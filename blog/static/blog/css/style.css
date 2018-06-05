@@ -55,6 +55,9 @@ hr {
 
 /*-------------------------------------------------*/
 
+/*------------------------------*/
+
+
 .posts {
     margin-bottom: 50px;
 }
@@ -435,4 +438,30 @@ a:active {
 .pagination li.active a {
     color: #fff;
     background: #bcbcbc;
+}
+
+/*----------------------------------------------------*/
+/*article-detail*/
+.article-body {
+    background-color: white;
+    padding-top: 20px;
+    border: solid #bcbcbc 1px;
+    border-radius: 15px;
+    /*box-shadow: 5px 5px 2px #888888;*/
+    border-top: solid 3px #1ba1e2;
+}
+
+.article-info {
+    margin: 25px 0 0 0;
+}
+
+/*---------------------------------------------------------*/
+/*comment*/
+.comment-list {
+    background-color: white;
+    border: solid #bcbcbc 1px;
+    border-top: solid 3px #1ba1e2;
+    border-radius: 15px;
+    margin-top: 50px;
+    padding-top: 20px;
 }

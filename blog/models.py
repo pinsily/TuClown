@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 from django.db import models
-from DjangoUeditor.models import UEditorField
+#from DjangoUeditor.models import UEditorField
 
 
 class Article(models.Model):
@@ -13,10 +13,10 @@ class Article(models.Model):
     )
 
     title = models.CharField(max_length=100, verbose_name=u'标题')
-    #body = models.TextField(verbose_name=u'正文')
-    body = UEditorField('内容', height=300, width=1000,
-                        default=u'', blank=True, imagePath="uploads/images/",
-                        toolbars='besttome', filePath='uploads/files/')
+    body = models.TextField(verbose_name=u'正文')
+    # body = UEditorField('内容', height=300, width=1000,
+    #                     default=u'', blank=True, imagePath="uploads/images/",
+    #                     toolbars='besttome', filePath='uploads/files/')
     image = models.URLField(
         blank=True, default="http://owgxfd8jv.bkt.clouddn.com/HollowRock.jpg", verbose_name=u'封面图片')
     # auto_now_add 创建时间戳，不会被覆盖
