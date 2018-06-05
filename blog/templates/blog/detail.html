@@ -1,0 +1,33 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block title %}TuClown | Detail{% endblock %}
+
+
+{% block ownstatic %}
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/github.css' %}">
+{% endblock %}
+
+{% block body %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="article-header">
+                    <h3 class="text-center">{{ article.title }}</h3>
+                    <p class="text-center">
+                        <span><i class="fa fa-clock-o"></i>&nbsp; {{ article.created_time }}</span>&nbsp; &nbsp;
+                        <span><i class="fa fa-edit"></i>&nbsp; {{ article.author }}</span>&nbsp; &nbsp;
+                        <span><i class="fa fa-eye"></i>&nbsp; {{ article.views }}</span>&nbsp; &nbsp;
+                        <span><a><i class="fa fa-heart"></i>&nbsp; {{ article.likes }}</a></span>
+                    </p>
+                </div>
+                <div class="content-github">
+                    {{ article.body | safe }}
+                </div>
+            </div>
+            {% include "blog/comment.html" %}
+        </div>
+    </div>
+
+
+{% endblock %}

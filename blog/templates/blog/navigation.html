@@ -1,0 +1,72 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% load paginate_tags %}
+{% block title %}TuClown | Navigation{% endblock %}
+
+{% block body %}
+        
+    <div class="container nav-page">
+        <div class="row">
+            {% for category in linkcategory_list %}
+            {% if category.link_set.all %}
+              
+            
+            <div class="col-md-4 col-sm-12">
+                
+                <div class="card">
+                  <div class="card-header">
+                    <a class="card-link" data-toggle="collapse" href="#collapse{{ category.id }}">
+                      {{ category.name }}
+                    </a>
+                  </div>
+                  <div id="collapse{{ category.id }}" class="collapse show" data-parent="#accordion">
+                    <div class="card-body">
+                      <ul class="list-group">
+                          {% for link in category.link_set.all %}
+                          <li class="list-group-item">
+                                <img src="http://favicon.byi.pw/?url={{ link.url }}">
+                                <a href="{{ link.url }}">{{ link.name }}</a>
+                                <span class="text-right" data-toggle="modal" data-target="#link{{link.id}}"><i class="fa fa-qrcode"></i></span>
+                          </li>
+
+
+                            <!-- 模态框 -->
+                            <div class="modal fade" id="link{{link.id}}">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                             
+                                  <div class="modal-header">
+                                    <h4 class="modal-title">二维码</h4>
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                  </div>
+                             
+                                  <div class="modal-body">
+                                    <div class="modal-img">
+                                      <img src="data:image/jpeg;base64, {{ link_qr_dict | keyvalue:link.id }}" alt="{{link.id}}"/> 
+                                    </div> 
+                                  </div>
+                             
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">关闭</button>
+                                  </div>
+                             
+                                </div>
+                              </div>
+                            </div>
+                            
+                         
+
+                          {% endfor %}
+                        </ul>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+ 
+
+
+{% endblock %}
