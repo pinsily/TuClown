@@ -4,6 +4,7 @@ from django.db import models
 
 from django.db import models
 #from DjangoUeditor.models import UEditorField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Article(models.Model):
@@ -13,7 +14,8 @@ class Article(models.Model):
     )
 
     title = models.CharField(max_length=100, verbose_name=u'标题')
-    body = models.TextField(verbose_name=u'正文')
+    #body = models.TextField(verbose_name=u'正文')
+    body = RichTextUploadingField()
     # body = UEditorField('内容', height=300, width=1000,
     #                     default=u'', blank=True, imagePath="uploads/images/",
     #                     toolbars='besttome', filePath='uploads/files/')

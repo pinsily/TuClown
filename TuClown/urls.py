@@ -38,6 +38,7 @@ urlpatterns = [
     # path('ueditor/', include('DjangoUeditor.urls')),
     # path('mdeditor/', include('mdeditor.urls')),
     # path('markdown/', include( 'django_markdown.urls')),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
 ]
 
 if settings.DEBUG:

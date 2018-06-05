@@ -48,6 +48,8 @@ INSTALLED_APPS = [
     # 'DjangoUeditor',
     # 'mdeditor',
     # 'django_markdown',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -146,3 +148,6 @@ AUTH_USER_MODEL = 'userprofile.UserProfile'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+
+CKEDITOR_UPLOAD_PATH = 'upload/'

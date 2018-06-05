@@ -136,36 +136,37 @@ MEDIA_URL = '/media/'  # browser use
 
 ------
 
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{% block title %}TuClown | TuClown{% endblock %}</title>
-
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
-
-    {% block ownstatic %}
-        
-    {% endblock  %}
-
-</head>
-<body>
-
-    <div class="container">
-        <p>hello</p>
-    </div>
+取文章的前120字符并去掉html标签
+{{  article.blog | striptags | truncatechars:120 }}
 
 
-    {% block body %}
+----
+使用 django-ckeditor
+
+pip install django-ckeditor
+
+'ckeditor'
+
+配置 model
+from ckeditor.fields import RichTextField
+
+content = RichTextField
 
 
-        
-    {% endblock %}
+xadmin 注册的时候单纯注册就行
 
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+添加上传图片
 
-</body>
-</html>
+1. pip install pillow
+2. 添加app： ckeditor_uploader
+3. 配置参数
+CKEDITOR_UPLOAD_PATH = 'upload/'
+
+MEDIA_URL
+MEDIA_ROOT
+
+4. 配置URL
+path('ckeditor', include(ckeditor_uploader.urls')),
+还有MEDIA的
+
+5. 在修改models

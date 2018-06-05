@@ -57,7 +57,7 @@ class LinkCategoryAdmin(object):
     list_display = ['name']
 
 
-xadmin.site.register(Article, ArticleAdmin)
+xadmin.site.register(Article)
 # xadmin.site.register(Article, MarkdownModelAdmin)
 xadmin.site.register(Category, CategoryAdmin)
 xadmin.site.register(Comment, CommentAdmin)
