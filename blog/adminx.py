@@ -1,6 +1,6 @@
 #from django.contrib import admin
 from .models import Article, Category, Comment, Tag, Link, LinkCategory
-
+# from django_markdown.admin import MarkdownModelAdmin
 
 import xadmin
 # Register your models here.
@@ -58,6 +58,7 @@ class LinkCategoryAdmin(object):
 
 
 xadmin.site.register(Article, ArticleAdmin)
+# xadmin.site.register(Article, MarkdownModelAdmin)
 xadmin.site.register(Category, CategoryAdmin)
 xadmin.site.register(Comment, CommentAdmin)
 xadmin.site.register(Tag, TagAdmin)

@@ -37,6 +37,7 @@ urlpatterns = [
     path('blog/', include('blog.urls')),
     # path('ueditor/', include('DjangoUeditor.urls')),
     # path('mdeditor/', include('mdeditor.urls')),
+    # path('markdown/', include( 'django_markdown.urls')),
 ]
 
 if settings.DEBUG:

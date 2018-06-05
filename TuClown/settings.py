@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'reversion',
     # 'DjangoUeditor',
     # 'mdeditor',
+    # 'django_markdown',
 ]
 
 MIDDLEWARE = [
