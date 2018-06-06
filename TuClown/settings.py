@@ -146,8 +146,27 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 AUTH_USER_MODEL = 'userprofile.UserProfile'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+#MEDIA_URL = '/media/'
 
 
 CKEDITOR_UPLOAD_PATH = 'upload/'
+
+
+# 上传到七牛云
+
+QINIU_ACCESS_KEY = 'e9U2fxCnxJt_4_lhPCv-e4DVP-MkHJv90v2TtBAb'
+QINIU_SECRET_KEY = 'jf1WCQU03pasvKlWsuMYV8PLOXt4eEdXZQ5jsIEY'
+QINIU_BUCKET_NAME = 'django'
+QINIU_BUCKET_DOMAIN = 'p9w6udf2c.bkt.clouddn.com'
+QINIU_SECURE_URL = False  # 使用http
+
+# http://p9w6udf2c.bkt.clouddn.com/10-18818.jpg
+
+PREFIX_URL = 'http:///'
+
+MEDIA_URL = PREFIX_URL + QINIU_BUCKET_DOMAIN + '/media/'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = 'media/'
+
+DEFAULT_FILE_STORAGE = 'qiniustorage.backends.QiniuMediaStorage'

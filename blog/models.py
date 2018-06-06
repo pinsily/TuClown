@@ -19,9 +19,10 @@ class Article(models.Model):
     # body = UEditorField('内容', height=300, width=1000,
     #                     default=u'', blank=True, imagePath="uploads/images/",
     #                     toolbars='besttome', filePath='uploads/files/')
-    #image = models.URLField(
-        # blank=True, default="http://owgxfd8jv.bkt.clouddn.com/HollowRock.jpg", verbose_name=u'封面图片')
-    image = models.FileField(upload_to='blog/uploads/')
+    # image = models.URLField(
+    # blank=True, default="http://owgxfd8jv.bkt.clouddn.com/HollowRock.jpg", verbose_name=u'封面图片')
+    #image = models.FileField(upload_to='blog/uploads/')
+    image = models.FileField()
 
     # auto_now_add 创建时间戳，不会被覆盖
     created_time = models.DateTimeField(verbose_name=u'创建时间')
