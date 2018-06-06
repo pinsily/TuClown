@@ -170,3 +170,4 @@ path('ckeditor', include(ckeditor_uploader.urls')),
 还有MEDIA的
 
 5. 在修改models
+from ckeditor_uploader.fields import RichTextUploadingField
