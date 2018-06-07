@@ -14,7 +14,8 @@ body {
 .all-container {
     max-width: 1000px;
     margin: 0 auto;
-    color: #bcbcbc;
+    /*color: #bcbcbc;*/
+    color: #666666;
     font-size: 14px;
 }
 
@@ -406,17 +407,24 @@ a:active {
 .pagination-wrap {
     margin: 0 auto;
     text-align: center;
-    margin-top: 60px;
+    margin-top: 30px;
+    background-color: white;
+    padding: 10px 0;
+    /*border-top: solid 3px #1ba1e2;*/
+    padding: 20px 30px 15px 30px;
+    margin: 0 5px 50px 5px;
+    border-radius: 5px;
 }
 
 .pagination {
     
 }
 
-.pagination ul {
+.pagination-wrap ul {
     padding: 0;
     margin: 0;
     list-style: none;
+    margin-bottom: 0;
 }
 
 .pagination li {
