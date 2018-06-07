@@ -163,7 +163,7 @@ QINIU_SECURE_URL = False  # 使用http
 
 # http://p9w6udf2c.bkt.clouddn.com/10-18818.jpg
 
-PREFIX_URL = 'http:///'
+PREFIX_URL = 'http://'
 
 MEDIA_URL = PREFIX_URL + QINIU_BUCKET_DOMAIN + '/media/'
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
