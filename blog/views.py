@@ -81,7 +81,7 @@ class ArticleDetailView(DetailView):
     # 为模板添加分类和标签上下文变量
     def get_context_data(self, **kwargs):
         kwargs['comment_list'] = self.object.comment_set.all()
-        # kwargs['form'] = BlogCommentForm()
+
         kwargs['category_list'] = Category.objects.all().order_by('name')
         kwargs['tag_list'] = Tag.objects.all().order_by('name')
         kwargs['detail'] = True
