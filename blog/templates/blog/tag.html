@@ -1,0 +1,40 @@
+{% extends "blog/base.html" %}
+{% load static %}
+{% block title %}TuClown | Tag{% endblock %}
+
+{% block body %}
+            
+    <!-- body -->
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 col-md-8 posts">
+                <div class="post-wrap">
+                    {% for tag in tag_list %}
+                    <div class="ct">
+                        <div class="ct-header">
+                            <h2 class="btn btn-sm btn-info btn-rounded m-t-none">{{ tag.name }}</h2>
+                        </div>
+                        <div class="ct-articles">
+                            <div class="row">
+                                {% for article in tag.article_set.all %}
+                                <div class="col-md-6 col-sm-12">
+                                    <div class="post-card">
+                                        <a href="{% url 'blog:detail' article.id %}" class="text-lt">{{ article.title }}</a>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            {% include "blog/sidebar.html" %}
+
+            
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    
+    <title>{% block title %}TuClown | TuClown{% endblock %}</title>
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/hover.css' %}">
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
+
+    <link rel="stylesheet" type="text/css" href="{% static 'blog/css/style.css' %}">
+
+    {% block ownstatic %}
+        
+    {% endblock %}
+
+</head>
+<body>
+    <div class="all-container">
+        <!-- header -->
+        <header>
+            <div class="container">
+                <h1 class="text-center">TuClown</h1>
+                <p class="text-center">~听说，小丑给了你一朵郁金香~</p>
+
+
+                <ul class="nav justify-content-center cl-effect-13">
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog:index' %}">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">One</a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Page</a>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" href="{% url 'blog:archive' %}">Archive</a>
+                      <a class="dropdown-item" href="{% url 'blog:category' %}">Category</a>
+                      <a class="dropdown-item" href="{% url 'blog:tag' %}">Tag</a>
+                    </div>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="{% url 'blog:navigation' %}">Nav</a>
+                  </li>
+
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Admin</a>
+                  </li>
+                </ul>
+
+            </div>
+        </header>
+
+        {% block search %}
+            
+        {% endblock %}
+
+        <hr>
+
+        {% block body %}
+            
+
+        {% endblock %}
+
+        <!--  -->
+        <!--  -->
+
+        
+        <footer class="navbar-fixed-bottom">
+            <div class="container">
+               <p class="text-center">TuClown | 2018 ©版權所有 | blog.pinsily.site </p>
+            </div>
+        </footer>
+
+    </div>
+    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
+    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+     
+    <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
+    <script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+     
+    <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+
+    
+
+</body>
+</html>
