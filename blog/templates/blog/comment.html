@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% load static %}
 <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -68,75 +67,4 @@
   </div>
   {% endfor %}
 
-=======
-{% load static %}
-<div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h4 class="modal-title" id="myModalLabel">Comment</h4>
-
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-      </div>
-      <div class="modal-body">
-        <form class="form-horizontal" role="form" action="{% url 'blog:comment' article.id %}" method="post">
-          {% csrf_token %}
-                  <div class="form-group">
-                      
-                      <div class="col-sm-12">
-                          <input type="text" class="form-control" name="nick" id="nick" placeholder="nick">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="col-sm-12">
-                          <input type="text" class="form-control" name="email" id="email" placeholder="email">
-                      </div>
-                  </div>
-
-                  <div class="form-group">
-                      
-                      <div class="col-sm-12">
-                          <textarea type="text" class="form-control" name="comment-body" id="conent" placeholder="conent" rows="4"></textarea>
-                      </div>
-                  </div>
-
-                  <div class="form-group">
-                    <div class="col-sm-12">
-                    <button class="btn btn-primary btn-sm btn-block">Comment</button>
-                    </div>
-                  </div>
-              </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="col-12 comment-list">
-
-  <p>评论列表&nbsp;&nbsp;<button class="btn btn-danger btn-group-justified" data-toggle="modal" data-target="#commentModal" style="padding: 3px 3px 4px 3px; font-size: 14px; cursor:pointer;">我来说一句</button></p>
-  <hr style="margin: 5px 0 10px 0;">
-
-  <!-- Single Comment -->
-  <div class="media mb-4">
-    <h6 class="mt-0">
-      Comments( {{ comment_list | length }} )
-    </h6>
-  </div>
-  {% for comment in comment_list %}
-  <div class="media mb-4" style="border: 0.1px solid #afafaf; padding: 8px; margin: 10px;">
-    <img class="d-flex mr-3 rounded-circle" src="{% static 'blog/images/12.jpg' %}" alt="" width="25" height="25" style="border: 0.1px solid #afafaf;">
-    <div class="media-body text-justify" style="font-size: 14px;">
-      <span>{{ comment.user_name }}</span>&nbsp;&nbsp;<span style="font-size:12px;"> {{ comment.created_time | date:'Y-m-d h:i' }} </span>&nbsp;&nbsp;<span style="font-size:12px;">#</span>
-        <p style="font-size:14px; padding: 9px 0;">{{ comment.body }}</p>
-    </div>
-  </div>
-  {% empty %}
-  <div class="media mb-4">
-    <div class="media-body">
-      <h6 class="mt-0">暂时没有评论！</h6>
-    </div>
-  </div>
-  {% endfor %}
-
->>>>>>> dfa1be1e8bf6ee4f8a52e2b475c89765527bcad1
 </div>

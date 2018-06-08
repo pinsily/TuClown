@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {% extends "blog/base.html" %}
 {% load static %}
 {% block title %}TuClown | Archive{% endblock %}
@@ -53,62 +52,4 @@
         </div>
     </div>
 
-
-=======
-{% extends "blog/base.html" %}
-{% load static %}
-{% block title %}TuClown | Archive{% endblock %}
-
-{% block body %}
-            
-    <!-- body -->
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12 col-md-8 posts">
-                <div class="post-wrap">
-                    
-                    <ul class="timeline">
-                        {% regroup article_list by created_time.year as articles_by_year %}
-
-                        {% for year in articles_by_year %}
-                        {% regroup year.list by created_time.month as articles_by_month %}
-                        {% for month in articles_by_month %}
-
-
-                        <li class="tl-header">
-                            <h2 class="btn btn-sm btn-info btn-rounded m-t-none">{{ year.grouper }}年{{ month.grouper }}月</h2>
-                        </li>
-
-                        {% regroup month.list by created_time.day as articles_by_day %}
-
-                        {% for article in month.list %}
-
-                        <div class="tl-body">
-                            <li class="tl-item">
-                                <div class="tl-wrap b-info">
-                                    <span class="tl-date">{{ article.created_time.day | stringformat:'02d' }}日</span>
-                                    <h3 class="tl-content card padder h5 bg-info">
-                                        <span class="arrow arrow-info left pull-up" aria-hidden="true"></span>
-                                        <a href="{% url 'blog:detail' article.id %}" class="text-lt">{{ article.title }}</a>
-                                    </h3>
-                                </div>
-                            </li>
-                        </div>
-
-                        {% endfor %}
-                        {% endfor %}
-                        {% endfor %}
-                    </ul>
-
-                </div>
-            </div>
-
-            {% include "blog/sidebar.html" %}
-
-            
-        </div>
-    </div>
-
-
->>>>>>> dfa1be1e8bf6ee4f8a52e2b475c89765527bcad1
 {% endblock %}
