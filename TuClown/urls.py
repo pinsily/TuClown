@@ -34,7 +34,7 @@ django.setup()
 
 urlpatterns = [
     # path('admin/', admin.site.urls),
-    path('admin', xadmin.site.urls),
+    path('admin/', xadmin.site.urls),
     path('', include('blog.urls')),
     # path('ueditor/', include('DjangoUeditor.urls')),
     # path('mdeditor/', include('mdeditor.urls')),

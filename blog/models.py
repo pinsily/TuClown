@@ -4,7 +4,6 @@ from django.db import models
 
 from django.db import models
 #from DjangoUeditor.models import UEditorField
-from ckeditor_uploader.fields import RichTextUploadingField
 
 
 class Article(models.Model):

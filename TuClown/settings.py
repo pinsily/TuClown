@@ -45,11 +45,6 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'reversion',
-    # 'DjangoUeditor',
-    # 'mdeditor',
-    # 'django_markdown',
-    'ckeditor',
-    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
