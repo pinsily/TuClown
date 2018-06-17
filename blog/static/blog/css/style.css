@@ -8,7 +8,7 @@ body {
     background-image: url('../imgs/bg.jpg');
     background-size: 100% 100%;
     background-position: center;*/
-    background: url('../imgs/bg_2.jpg') no-repeat center center fixed;
+    background: url('../imgs/2.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -485,4 +485,27 @@ a:active {
 .card, .list-group {
     background-color: rgba(255,255,255,0.4);
 }
+
+.card-header {
+    cursor: pointer;   
+    -webkit-transition: all .5s;   
+    -moz-transition: all .5s;   
+    -ms-transition: all .5s;   
+    -o-transition: all .5s;   
+    transition: all .5s;  
+}
+
+.card-header:hover {
+    background: #2098d1;
+    /*transition-duration: 1s;*/
+    transition-timing-function: linear;
+    /*transition-property:all;
+    transition-duration:2s;
+    transition-delay:2s;
+    transition-timing-function:linear;*/
+    /*padding-top: 3px;*/
+}
+
+.card-header:hover,.card-header:focus,.card-header:active{color:white;}
+.card-header:hover:before,.card-header:focus:before,.card-header:active:before{-webkit-transform:scaleX(1);transform:scaleX(1);}
 
