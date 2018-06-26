@@ -2,24 +2,26 @@
     <div class="card">
         <div class="card-header">分类</div>
         <div class="card-body">
+            <ul class="web-tag">
             {% for category in category_list %}
+               <li class="web-tag-list">
                 <a href="#">{{ category.name }}</a>
+                </li>
             {% endfor %}
+            </ul>
         </div>
     </div>
     <div class="card">
         <div class="card-header">标签</div>
         <div class="card-body">
             {% for tag in tag_list %}
+                <li class="web-tag-list">
                 <a href="#">{{ tag.name }}</a>
+                </li>
             {% endfor %}
 
            
         </div>
-    </div>
-    <div class="card">
-        <div class="card-header">头部</div>
-        <div class="card-body">内容</div>
     </div>
 
 </div>
