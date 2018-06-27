@@ -7,7 +7,7 @@
             
     <!-- body -->
     <div class="container-fluid">
-        <div class="row">
+        <div class="row" id="row">
             <div class="col-sm-12 col-md-8 posts">
                 {% paginate article_list 6 %}
                 {% for article in article_list  %}
@@ -50,6 +50,18 @@
             
         </div>
     </div>
+
+    <script type="text/javascript">
+        var elementPosition = $('#sidebar-float').offset().top;
+        var objWidth = $('#sidebar').width();
+        $(window).scroll(function(){
+                if($(window).scrollTop() > elementPosition){
+                      $('#sidebar-float').css('position','fixed').css('top','0').css('width',objWidth);
+                } else {
+                    $('#sidebar-float').css('position','static');
+                }    
+        });
+    </script>
 
 
 
