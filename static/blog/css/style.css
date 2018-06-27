@@ -166,13 +166,60 @@ hr {
 }  
 
 .post-content {
-    margin-top: 10px;
-    font-size: 14px;
-    text-indent: 28px;
+    /*background-color: #FBFBFB;*/
+    overflow: hidden;
+    padding: 28px 30px;
+    border-radius: 0 0 2px 2px;
+}
+
+.quote-words {
+    position: relative;
+    overflow: hidden;
+    padding: 5px 0;
+    display: block;
+}
+
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5)
+.quote-icon, .rotate-quote-mark {
+    background-image: url(../imgs/quotation_mark@2x.png);
+}
+
+a.quote-text, .quote-area p {
+    color: #777;
+
+}
+
+a.quote-text {
+    max-width: 530px;
+    float: left;
+    font-size: 13px;
+    color: #444;
+    margin: 0 30px;
+    line-height: 20px;
+}
+
+.rotate-quote-mark {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+}
+
+.quote-icon, .rotate-quote-mark {
+    width: 16px;
+    height: 16px;
+    background-image: url(../imgs/quotation_mark.png);
+    -webkit-background-size: 16px 16px;
+    -o-background-size: 16px 16px;
+    background-size: 16px 16px;
 }
 
 
-
+.rotate-quote-mark {
+    float: right;
+    /*text-align: right;*/
+}
 
 
 /*sildbar*/
