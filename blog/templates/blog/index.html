@@ -14,7 +14,7 @@
                 <div class="post-wrap">
                     <div class="post">
                         <div class="post-header">
-                            <h3 class="text-center">{{ article.title }}</h3>
+                            <a href="{% url 'blog:detail' article.id %}"><h3 class="text-center" style="color: black;">{{ article.title }}</h3></a>
                             <p class="text-center">
                             <span><i class="fa fa-clock-o"></i>&nbsp; {{ article.created_time }}</span>&nbsp; &nbsp;
                             <span><i class="fa fa-edit"></i>&nbsp; {{ article.author }}</span>&nbsp; &nbsp;
@@ -23,8 +23,17 @@
                             </p>
                         </div>
                         <div class="post-img text-center">
-                            <img src="{{ article.image.url }}">
+                            <a href="{% url 'blog:detail' article.id %}"><img src="{{ article.image.url }}"></a>
                         </div>
+
+                        <div class="post-content">
+                            <div class="quote-words">
+                                <div class="quote-icon"></div>
+                                <a class="quote-text" href="{% url 'blog:detail' article.id %}" target="_blank">{{ article.abstract }}</a> 
+                                <div class="rotate-quote-mark"></div>
+                            </div>
+                        </div>
+<!-- 
                         <div class="post-content">
                             <p>{{ article.abstract }}</p>
                         </div>
@@ -32,7 +41,7 @@
                         <div class="post-more">
                             <a href="{% url 'blog:detail' article.id %}">Read More</a>
                         </div>
-                            
+                             -->
                     </div>
                     
                 </div>
