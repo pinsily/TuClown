@@ -86,7 +86,7 @@ class ArticleDetailView(DetailView):
         kwargs['category_list'] = Category.objects.all().order_by('name')
         kwargs['tag_list'] = Tag.objects.all().order_by('name')
         kwargs['comment_list'] = Comment.objects.filter(
-            content_type=article_content_type, object_id=article.pk, parent=None)
+            content_type=article_content_type, object_id=article.pk, parent=None).order_by("-created_time")
         kwargs['detail'] = True
         return super(ArticleDetailView, self).get_context_data(**kwargs)
 
