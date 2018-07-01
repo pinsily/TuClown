@@ -8,33 +8,43 @@
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
       </div>
       <div class="modal-body">
-        <form class="form-horizontal" role="form" action="{% url 'blog:comment' article.id %}" method="post">
+        <form class="form-horizontal" role="form" action="{% url 'comment:user_comment'%}" method="post">
           {% csrf_token %}
-                  <div class="form-group">
-                      
-                      <div class="col-sm-12">
-                          <input type="text" class="form-control" name="nick" id="nick" placeholder="nick">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <div class="col-sm-12">
-                          <input type="text" class="form-control" name="email" id="email" placeholder="email">
-                      </div>
-                  </div>
+            <div class="form-group">
+                
+                <div class="col-sm-12">
+                    <input type="text" class="form-control" name="nick" id="nick" placeholder="nick">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="email" class="form-control" name="email" id="email" placeholder="email">
+                </div>
+            </div>
 
-                  <div class="form-group">
-                      
-                      <div class="col-sm-12">
-                          <textarea type="text" class="form-control" name="comment-body" id="conent" placeholder="conent" rows="4"></textarea>
-                      </div>
-                  </div>
+            <div class="form-group">
+                
+                <div class="col-sm-12">
+                    <textarea type="text" class="form-control" name="comment_body" id="conent" placeholder="content" rows="4"></textarea>
+                </div>
+            </div>
 
-                  <div class="form-group">
-                    <div class="col-sm-12">
-                    <button class="btn btn-primary btn-sm btn-block">Comment</button>
-                    </div>
-                  </div>
-              </form>
+            <div class="form-group">
+                
+                <div class="col-sm-12">
+                    <input type="hidden" name="object_id" value="{{ article.pk }}">
+                    <input type="hidden" name="content_type" value="article">
+                    <input type="hidden" name="reply_comment_id" id="reply_comment_id" value="">
+                </div>
+            </div>
+
+
+            <div class="form-group">
+              <div class="col-sm-12">
+              <button class="btn btn-primary btn-sm btn-block" id="comment_btn">Comment</button>
+              </div>
+            </div>
+        </form>
       </div>
     </div>
   </div>
@@ -42,7 +52,9 @@
 
 <div class="col-12 comment-list">
 
-  <p>评论列表&nbsp;&nbsp;<button class="btn btn-danger btn-group-justified" data-toggle="modal" data-target="#commentModal" style="padding: 3px 3px 4px 3px; font-size: 14px; cursor:pointer;">我来说一句</button></p>
+  <p>评论列表&nbsp;&nbsp;
+    <button class="btn btn-danger btn-group-justified" data-toggle="modal" data-target="#commentModal" style="padding: 3px 3px 4px 3px; font-size: 14px; cursor:pointer;">我来说一句</button>
+  </p>
   <hr style="margin: 5px 0 10px 0;">
 
   <!-- Single Comment -->
@@ -52,14 +64,32 @@
     </h6>
   </div>
   {% for comment in comment_list %}
-  <div class="media mb-4" style="border: 0.1px solid #afafaf; padding: 8px; margin: 10px;">
-    <img class="d-flex mr-3 rounded-circle" src="{% static 'blog/images/12.jpg' %}" alt="" width="25" height="25" style="border: 0.1px solid #afafaf;">
+  <div class="media mb-4" style="border: 0.1px solid #afafaf; padding: 8px; margin: 10px; ">
+    <img class="d-flex mr-3 rounded-circle" src="{% static 'blog/imgs/1.jpg' %}" alt="" width="25" height="25" style="border: 0.1px solid #afafaf;">
     <div class="media-body text-justify" style="font-size: 14px;">
       <span>{{ comment.user_name }}</span>&nbsp;&nbsp;<span style="font-size:12px;"> {{ comment.created_time | date:'Y-m-d h:i' }} </span>&nbsp;&nbsp;<span style="font-size:12px;">#</span>
-        <p style="font-size:14px; padding: 9px 0;">{{ comment.body }}</p>
+      <a href="javascript:reply({{comment.pk}});">回复</a>
+        <p style="font-size:14px; padding: 9px 0; margin:0;">{{ comment.text  }}</p>
+
+      {% for reply in comment.root_comment.all %}
+
+        <span>
+          <img class="rounded-circle" src="{% static 'blog/imgs/1.jpg' %}" alt="" width="25" height="25" style="border: 0.1px solid #afafaf; margin: 2px; margin-right: 15px; ">
+          <span>{{ reply.user_name }}</span>&nbsp;&nbsp;
+          <span style="font-size:12px;"> {{ reply.created_time | date:'Y-m-d h:i' }} </span>&nbsp;&nbsp;
+          <span style="font-size:12px;"> 回复 </span>&nbsp;&nbsp;
+          <span style="font-size:12px;"> {{ reply.reply_name }}: </span>&nbsp;&nbsp;
+          <span style="font-size:12px;"> # </span>&nbsp;&nbsp;
+          <a href="javascript:reply({{reply.pk}});">回复</a>
+        </span>
+          <p style="font-size:14px; padding: 9px 0; margin:0; text-indent: 56px;">{{ reply.text }}</p>
+
+      {% endfor %}
+
     </div>
   </div>
   {% empty %}
+
   <div class="media mb-4">
     <div class="media-body">
       <h6 class="mt-0">暂时没有评论！</h6>
@@ -68,3 +98,13 @@
   {% endfor %}
 
 </div>
+
+
+<script type="text/javascript">
+  
+  function reply(reply_comment_id) {
+      $("#reply_comment_id").val(reply_comment_id);
+      $('#commentModal').modal({keyboard: false});
+  }
+
+</script>

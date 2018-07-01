@@ -172,3 +172,14 @@ path('ckeditor', include(ckeditor_uploader.urls')),
 5. 在修改models
 
 from ckeditor_uploader.fields import RichTextUploadingField
+
+
+------------
+
+### 登录之后返回原来页面
+```
+referer = request.META.get("HTTP_REFERER", '/')
+
+if user is not None:
+    return redirect(referer)
+```

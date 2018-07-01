@@ -1,5 +1,5 @@
 #from django.contrib import admin
-from .models import Article, Category, Comment, Tag, Link, LinkCategory
+from .models import Article, Category, Tag, Link, LinkCategory
 # from django_markdown.admin import MarkdownModelAdmin
 
 import xadmin
@@ -41,10 +41,6 @@ class CategoryAdmin(object):
     list_display = ['name', 'created_time']
 
 
-class CommentAdmin(object):
-    list_display = ['user_name', 'body', 'created_time', 'article']
-
-
 class TagAdmin(object):
     list_display = ['name', 'created_time']
 
@@ -60,7 +56,6 @@ class LinkCategoryAdmin(object):
 xadmin.site.register(Article)
 # xadmin.site.register(Article, MarkdownModelAdmin)
 xadmin.site.register(Category, CategoryAdmin)
-xadmin.site.register(Comment, CommentAdmin)
 xadmin.site.register(Tag, TagAdmin)
 xadmin.site.register(Link, LinkAdmin)
 xadmin.site.register(LinkCategory, LinkCategoryAdmin)

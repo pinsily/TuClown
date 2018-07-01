@@ -5,11 +5,12 @@ from django.shortcuts import get_list_or_404, redirect, get_object_or_404
 from django.urls import reverse
 from django.contrib import auth
 from django.utils.six import BytesIO
+from django.contrib.contenttypes.models import ContentType
 
 # Create your views here.
 
-from .models import Article, Category, Tag, Comment, Link, LinkCategory
-
+from .models import Article, Category, Tag, Link, LinkCategory
+from comment.models import Comment
 
 import markdown
 import re
@@ -35,9 +36,6 @@ class IndexView(ListView):
     # 为模板添加分类和标签上下文变量
     def get_context_data(self, **kwargs):
         kwargs['category_list'] = Category.objects.all()
-        # kwargs['tag_list'] = Tag.objects.all().order_by("name")
-        # kwargs['tag_list'] = Tag.objects.all().order_by("name")
-        # print(self)
         kwargs['stick_articles'] = Article.objects.filter(topped=True)
         kwargs['current_page'] = 'home'
         kwargs['home'] = True
@@ -80,30 +78,17 @@ class ArticleDetailView(DetailView):
 
     # 为模板添加分类和标签上下文变量
     def get_context_data(self, **kwargs):
-        kwargs['comment_list'] = self.object.comment_set.all()
-        # kwargs['form'] = BlogCommentForm()
+
+        article = self.get_object()
+
+        article_content_type = ContentType.objects.get_for_model(article)
+
         kwargs['category_list'] = Category.objects.all().order_by('name')
         kwargs['tag_list'] = Tag.objects.all().order_by('name')
+        kwargs['comment_list'] = Comment.objects.filter(
+            content_type=article_content_type, object_id=article.pk, parent=None)
         kwargs['detail'] = True
-        kwargs['stick_articles'] = Article.objects.filter(topped=True)
         return super(ArticleDetailView, self).get_context_data(**kwargs)
-
-
-# 评论函数
-def comment(request, article_id):
-    article = Article.objects.get(pk=article_id)
-
-    if request.method == 'POST':
-        user_name = request.POST['nick']
-        user_email = request.POST['email']
-        content = request.POST['comment-body']
-
-        Comment.objects.create(user_name=user_name,
-                               user_email=user_email, body=content, article=article)
-
-        return HttpResponseRedirect(reverse('blog:detail', args=(article_id,)))
-
-    return HttpResponseRedirect(reverse('blog:detail', args=(article_id,)))
 
 
 # 归档函数
@@ -186,7 +171,3 @@ class NavigationView(ListView):
         image_stream = base64.b64encode(image_stream)
 
         return str(image_stream)[2:-1]
-        # return HttpResponse(image_stream, content_type="image/png")
-        # return HttpResponse(image_stream)
-        #response = HttpResponse(image_stream, content_type="image/png")
-        # return response
