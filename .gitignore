@@ -6,4 +6,5 @@
 dist
 build
 
-blog/migrations/
+blog/migration
+comment/migration
