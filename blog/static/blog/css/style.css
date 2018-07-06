@@ -73,10 +73,10 @@ header li {
 
 header .navbar {
     padding: 0;
-    margin: 0;
+    margin: 30px 0;
 }
 
-header > div > nav > div > ul > li:nth-child(1):hover {
+/*header > div > nav > div > ul > li:nth-child(1):hover {
     background-color: rgb(255,134,65);
 }
 
@@ -94,14 +94,14 @@ header > div > nav > div >  ul > li:nth-child(4):hover {
 
 header > div > nav > div >  ul > li:nth-child(5):hover {
     background-color: rgb(176,176,176);
-}
+}*/
 
 ul {
     color: black;
     padding: 0;
 }
 
-.dropdown-menu {
+/*.dropdown-menu {
     padding: 0;
     text-align: center;
     border-radius: 5px;
@@ -114,10 +114,18 @@ ul {
 .dropdown-menu .dropdown-item:hover {
     background-color: rgb(255,134,65);
     color: white;
+}*/
+
+header nav {
+    margin:30px 0;
 }
 
 hr {
     margin: 20px 0 60px 0;
+}
+
+.cl-effect-12 {
+    margin:30px 0;
 }
 
 
@@ -508,3 +516,6 @@ a:active {
 .m-title:hover:after{background:#ff5c43}
 .m-title:before{position:absolute;left:127px; background:#fff; height:18px;width:18px;border-radius:6px;top:3px;content:""}
 .m-title:after{position:absolute;left:127px;background:#ccc;height:12px;width:12px;border-radius:6px;top:6px;content:""}
+
+
+

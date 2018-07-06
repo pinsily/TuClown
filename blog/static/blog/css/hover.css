@@ -571,7 +571,7 @@ ul a:focus {
 .cl-effect-14 a::before,
 .cl-effect-14 a::after {
     position: absolute;
-    width: 45px;
+    width: 25px;
     height: 2px;
     background: #fff;
     content: '';

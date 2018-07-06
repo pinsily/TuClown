@@ -45,7 +45,7 @@
 
 
 
-          <nav class="navbar navbar-expand-md navbar-light justify-content-center">
+          <nav class="navbar navbar-expand-md navbar-light justify-content-center cl-effect-12">
            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsingNavbar2" >
                 <span class="navbar-toggler-icon" style="color: black;"></span>
@@ -56,16 +56,19 @@
                       <a class="nav-link" href="{% url 'blog:index' %}">Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">One</a>
+                      <a class="nav-link" href="{% url 'blog:archive' %}">Archive</a>
                     </li>
-                    <li class="nav-item dropdown">
+                    <li class="nav-item">
+                      <a class="nav-link" href="{% url 'blog:category' %}">Category</a>
+                    </li>
+                    <!-- <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Page</a>
                       <div class="dropdown-menu bg-dark">
                         <a class="dropdown-item" href="{% url 'blog:archive' %}">Archive</a>
                         <a class="dropdown-item" href="{% url 'blog:category' %}">Category</a>
                         <a class="dropdown-item" href="{% url 'blog:tag' %}">Tag</a>
                       </div>
-                    </li>
+                    </li> -->
                     <li class="nav-item">
                       <a class="nav-link" href="{% url 'blog:navigation' %}">Nav</a>
                     </li>
