@@ -8,3 +8,5 @@ build
 
 blog/migration
 comment/migration
+static/
+.qiniu_pythonsdk_hostscache.json
