@@ -1,4 +1,5 @@
 {% load static %}
+<!-- modal begin -->
 <div class="modal fade" id="commentModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -50,12 +51,15 @@
   </div>
 </div>
 
+<!-- modal end -->
+
+<!-- comment list begin -->
 <div class="col-12 comment-list">
 
   <p>评论列表&nbsp;&nbsp;
 
     <a href="javascript:reply(0);">
-      <button class="btn btn-danger btn-group-justified" style="padding: 3px 3px 4px 3px; font-size: 14px; cursor:pointer;">我来说一句</button>
+      <button class="btn btn-danger btn-group-justified comment-btn">我来说一句</button>
     </a>
     
   </p>
@@ -68,25 +72,25 @@
     </h6>
   </div>
   {% for comment in comment_list %}
-  <div class="media mb-4" style="border: 0.1px solid #afafaf; padding: 8px; margin: 10px; ">
+  <div class="media mb-4 comment-root">
     <img class="d-flex mr-3 rounded-circle" src="{% static 'blog/imgs/1.jpg' %}" alt="" width="25" height="25" style="border: 0.1px solid #afafaf;">
     <div class="media-body text-justify" style="font-size: 14px;">
-      <span>{{ comment.user_name }}</span>&nbsp;&nbsp;<span style="font-size:12px;"> {{ comment.created_time | date:'Y-m-d h:i' }} </span>&nbsp;&nbsp;<span style="font-size:12px;">#</span>
+      <span>{{ comment.user_name }}</span>&nbsp;&nbsp;<span"> {{ comment.created_time | date:'Y-m-d h:i' }} </span>&nbsp;&nbsp;<span>#</span>
       <a href="javascript:reply({{comment.pk}});">回复</a>
-        <p style="font-size:14px; padding: 9px 0; margin:0;">{{ comment.text  }}</p>
+        <p class="comment-text">{{ comment.text  }}</p>
 
       {% for reply in comment.root_comment.all %}
 
         <span>
           <img class="rounded-circle" src="{% static 'blog/imgs/1.jpg' %}" alt="" width="25" height="25" style="border: 0.1px solid #afafaf; margin: 2px; margin-right: 15px; ">
           <span>{{ reply.user_name }}</span>&nbsp;&nbsp;
-          <span style="font-size:12px;"> {{ reply.created_time | date:'Y-m-d h:i' }} </span>&nbsp;&nbsp;
-          <span style="font-size:12px;"> 回复 </span>&nbsp;&nbsp;
-          <span style="font-size:12px;"> {{ reply.reply_name }}: </span>&nbsp;&nbsp;
-          <span style="font-size:12px;"> # </span>&nbsp;&nbsp;
+          <span> {{ reply.created_time | date:'Y-m-d h:i' }} </span>&nbsp;&nbsp;
+          <span> 回复 </span>&nbsp;&nbsp;
+          <span> {{ reply.reply_name }}: </span>&nbsp;&nbsp;
+          <span> # </span>&nbsp;&nbsp;
           <a href="javascript:reply({{reply.pk}});">回复</a>
         </span>
-          <p style="font-size:14px; padding: 9px 0; margin:0; text-indent: 56px;">{{ reply.text }}</p>
+          <p class="comment-reply-text">{{ reply.text }}</p>
 
       {% endfor %}
 
@@ -103,6 +107,7 @@
 
 </div>
 
+<!-- comment list end -->
 
 <script type="text/javascript">
   

@@ -4,10 +4,6 @@ html {
 }
 
 body {
-   /* background-color: #eee;
-    background-image: url('../imgs/bg.jpg');
-    background-size: 100% 100%;
-    background-position: center;*/
     background: url('../imgs/2.jpg') no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -24,6 +20,8 @@ body {
     font-size: 14px;
 }
 
+
+/* ---------- header ----------------- */
 header {
     padding: 0 0 0 0;
     margin: 0 auto;
@@ -76,45 +74,10 @@ header .navbar {
     margin: 30px 0;
 }
 
-/*header > div > nav > div > ul > li:nth-child(1):hover {
-    background-color: rgb(255,134,65);
-}
-
-header > div > nav > div >  ul > li:nth-child(2):hover {
-    background-color: rgb(207,109,206);
-}
-
-header > div > nav > div >  ul > li:nth-child(3):hover {
-    background-color: rgb(255,132,166);
-}
-
-header > div > nav > div >  ul > li:nth-child(4):hover {
-    background-color: rgb(157,230,91);
-}
-
-header > div > nav > div >  ul > li:nth-child(5):hover {
-    background-color: rgb(176,176,176);
-}*/
-
 ul {
     color: black;
     padding: 0;
 }
-
-/*.dropdown-menu {
-    padding: 0;
-    text-align: center;
-    border-radius: 5px;
-}
-
-.dropdown-menu .dropdown-item {
-    color: #bcbcbc;
-}
-
-.dropdown-menu .dropdown-item:hover {
-    background-color: rgb(255,134,65);
-    color: white;
-}*/
 
 header nav {
     margin:30px 0;
@@ -268,22 +231,7 @@ a.quote-text {
     -o-transition: .3s;
     transition: .3s;
     font-size: 14px;
-    /*line-height: 0;*/
 }
-
-/*
-footer {
-    position: fixed;
-    right: 0;
-    left: 0;
-    z-index: 1030;
-    bottom: 0;
-    margin-bottom: 0;
-    border-width: 1px 0 0;
-
-
-}*/
-
 
 
 /*--------------------------------------------*/
@@ -454,7 +402,6 @@ a:active {
     padding-top: 20px;
     border: solid #bcbcbc 1px;
     border-radius: 15px;
-    /*box-shadow: 5px 5px 2px #888888;*/
     border-top: solid 3px #1ba1e2;
 }
 
@@ -473,6 +420,32 @@ a:active {
     padding-top: 20px;
 }
 
+
+.comment-btn {
+    padding: 3px 3px 4px 3px; 
+    font-size: 14px; 
+    cursor:pointer;
+}
+
+.comment-root {
+    border: 0.1px solid #afafaf;
+    padding: 8px;
+    margin: 10px; 
+}
+
+.comment-list span {
+    font-size: 14px;
+}
+
+.comment-reply-text {
+    font-size:14px; padding: 9px 0; margin:0; text-indent: 56px;
+}
+
+.comment-text {
+    font-size:14px; padding: 9px 0; margin:0;
+}
+
+/*---------------------------------------------------------*/
 .card, .list-group {
     background-color: rgba(255,255,255,0.4);
 }

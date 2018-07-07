@@ -30,3 +30,7 @@
 ### 2018.07.06
 1. 调整导航
 2. 样式：https://tympanus.net/Development/CreativeLinkEffects/
+
+---
+### 2018.07.07
+1. 加入返回顶部功能，开始使用js实现
