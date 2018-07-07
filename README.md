@@ -25,3 +25,8 @@
 ### 2018.07.03
 1. 重新排版归档页面
 2. 使用模板：https://codepen.io/brady_wright/pen/NNOvrW 
+
+----
+### 2018.07.06
+1. 调整导航
+2. 样式：https://tympanus.net/Development/CreativeLinkEffects/

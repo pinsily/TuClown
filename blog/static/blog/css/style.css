@@ -518,4 +518,17 @@ a:active {
 .m-title:after{position:absolute;left:127px;background:#ccc;height:12px;width:12px;border-radius:6px;top:6px;content:""}
 
 
+/*-------------------*/
 
+.back-top {
+
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    /*width: 80px;*/
+    /*height: 45px;*/
+    margin: 50px;
+    padding: 5px 25px;
+    border: 1px solid #bcbcbc;
+    
+}
