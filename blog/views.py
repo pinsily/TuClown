@@ -146,7 +146,7 @@ class CategoryView(ListView):
         return super(CategoryView, self).get_context_data(**kwargs)
 
 
-# 分类函数
+# 导航页面
 class NavigationView(ListView):
     model = LinkCategory
     context_object_name = 'linkcategory_list'
