@@ -20,7 +20,7 @@ django.setup()
 urlpatterns = [
     path('admin/', xadmin.site.urls),
     path('', include('blog.urls')),
-    path('ckeditor/', include('ckeditor_uploader.urls')),
+    # path('ckeditor/', include('ckeditor_uploader.urls')),
     path('comment/', include('comment.urls')),
 ]
 

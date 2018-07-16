@@ -9,7 +9,7 @@
     <div class="container-fluid">
         <div class="row" id="row">
             <div class="col-sm-12 col-md-8 posts">
-                {% paginate article_list 6 %}
+
                 {% for article in article_list  %}
                 <div class="post-wrap">
                     <div class="post">
@@ -33,15 +33,7 @@
                                 <div class="rotate-quote-mark"></div>
                             </div>
                         </div>
-<!-- 
-                        <div class="post-content">
-                            <p>{{ article.abstract }}</p>
-                        </div>
 
-                        <div class="post-more">
-                            <a href="{% url 'blog:detail' article.id %}">Read More</a>
-                        </div>
-                             -->
                     </div>
                     
                 </div>

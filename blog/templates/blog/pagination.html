@@ -1,26 +1,48 @@
 <div class="pagination-wrap">
-    <ul class='pagination justify-content-center'>
-        {% if article_list %}
-            {% if article_list.has_previous %}
-                <li class="page-item"><a class="page-link" href="?page={{ article_list.previous_page_number }}">&laquo;</a></li>
+
+    <ul class="pagination justify-content-center">
+
+
+        {% if article_list.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ article_list.previous_page_number }}" aria-label="Previous">&laquo;</a></li>
             {% else %}
-                <li class="page-item"><a class="class="page-link" disabled">&laquo;</a></li>
+                <li class="page-item"><a class="page-link disabled" aria-label="Previous" style="color: #FFFFFF;">&laquo;</a></li>
             {% endif %}
+        <!--
+        <li>
+            <a href="?page=
+                {% if article_list.has_previous %}
+                    {{article_list.previous_page_number}}
+                {% else %}
+                    {{article_list.number}}
+                {% endif %}
+            " aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        -->
+        {% for page in pages.page_range_ex %}
+            {% if page == '...' %}
+                <li><span>...</span></li>
+            {% else %}
+                <li><a href="?page={{page}}">{{page}}</a></li>
+            {% endif %}
+        {% endfor %}
 
-
-            {% for page in pages %}
-                <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
-            {% endfor %}
-
-            {% if article_list.has_next %}
+        {% if article_list.has_next %}
                 <li class="page-item"><a class="page-link" href="?page={{ article_list.next_page_number }}">&raquo;</a></li>
             {% else %}
                 <li class="page-item"><a class="page-link disabled">&raquo;</a></li>
             {% endif %}
-
-        {% else %}
-            <li class="page-item"><p>暂时没有文章</p></li>
-        {% endif %}
     </ul>
-
 </div>
+
+<script type="text/javascript">
+    {#设置凸显当前页码#}
+    $(".pagination li a").each(function(){
+        if($(this).text()=="{{article_list.number}}"){
+            $(this).parent().addClass("active");
+        }
+    });
+
+</script>

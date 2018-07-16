@@ -2,52 +2,57 @@ from django import template
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 register = template.Library()
-# 这是定义模板标签要用到的
 
 
-@register.simple_tag(takes_context=True)
-def paginate(context, object_list, page_count):
-    # context是Context 对象，object_list是你要分页的对象，page_count表示每页的数量
-    left = 3
-    right = 3
-    # 获取分页对象
-    paginator = Paginator(object_list, page_count)
-    # 从请求中获取页码号
-    page = context['request'].GET.get('page')
+def getpages(request, objectlist):
+    """get the paginator"""
+    current_page = request.GET.get('page', 1)
+    paginator = Paginator(objectlist, 6)
+    objectlist = paginator.page(current_page)
 
-    try:
-        object_list = paginator.page(page)  # 根据页码号获取数据页码对象
-        context['current_page'] = int(page)  # 将当前页码号封装进context中
-        # 获取页码列表
-        pages = paginator.page_range
+    page_range = []
+    current = objectlist.number  # 当前页码
+    page_all = paginator.num_pages  # 总页数
+    mid_pages = 3  # 中间段显示的页码数
+    page_goto = 1  # 默认跳转的页码
 
-    except PageNotAnInteger:
-        object_list = paginator.page(1)  # 获取首页数据页码对象
-        context['current_page'] = 1
-        pages = paginator.page_range
+    # 获取优化显示的页码列表
+    if page_all <= 2 + mid_pages:
+        # 页码数少于6页就无需分析哪些地方需要隐藏
+        page_range = paginator.page_range
+    else:
+        # 添加应该显示的页码
+        page_range += [1, page_all]
+        page_range += [current - 1, current, current + 1]
 
-    except EmptyPage:
-        # 用户传递的是一个空值，则把最后一页返回给他
-        object_list = paginator.page(paginator.num_pages)
-        # num_pages为总分页数
-        context['currten_page'] = paginator.num_pages
-        pages = paginator.page_range
+        # 若当前页是头尾，范围拓展多1页
+        if current == 1 or current == page_all:
+            page_range += [current + 2, current - 2]
 
-    context['article_list'] = object_list
-    context['pages'] = pages  # 页码列表
-    context['last_page'] = paginator.num_pages
-    context['first_page'] = 1
-    # 用于判断是否加入省略号
-    try:
-        context['page_first'] = pages[0]
-        context['page_last'] = pages[-1] + 1
-    except IndexError:
-        context['page_first'] = 1
-        context['page_last'] = 2
+        # 去掉超出范围的页码
+        page_range = filter(lambda x: 1 <= x <= page_all, page_range)
 
-    return ''
+        # 排序去重
+        page_range = sorted(list(set(page_range)))
 
+        # 查漏补缺
+        # 从第2个开始遍历，查看页码间隔，若间隔为0则是连续的
+        # 若间隔为1则补上页码；间隔超过1，则补上省略号
+        t = 1
+        for i in range(len(page_range) - 1):
+            step = page_range[t] - page_range[t - 1]
+            if step >= 2:
+                if step == 2:
+                    page_range.insert(t, page_range[t] - 1)
+                else:
+                    page_goto = page_range[t - 1] + 1
+                    page_range.insert(t, '...')
+                t += 1
+            t += 1
 
-@register.filter
-def keyvalue(dict, key):
-    return dict[key]
+    # 优化结果之后的页码列表
+    paginator.page_range_ex = page_range
+    # 默认跳转页的值
+    paginator.page_goto = page_goto
+
+    return paginator, objectlist

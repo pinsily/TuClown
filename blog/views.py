@@ -12,6 +12,8 @@ from django.contrib.contenttypes.models import ContentType
 from .models import Article, Category, Tag, Link, LinkCategory
 from comment.models import Comment
 
+from blog.templatetags.paginate_tags import getpages
+
 import markdown
 import re
 import qrcode
@@ -35,6 +37,11 @@ class IndexView(ListView):
 
     # 为模板添加分类和标签上下文变量
     def get_context_data(self, **kwargs):
+        # 获得分页的信息
+        pages, temp = getpages(self.request, self.get_queryset())
+        kwargs['pages'] = pages
+        self.article_list = temp
+
         kwargs['category_list'] = Category.objects.all()
         kwargs['stick_articles'] = Article.objects.filter(topped=True)
         kwargs['current_page'] = 'home'
@@ -43,6 +50,18 @@ class IndexView(ListView):
         kwargs['recent_articles'] = Article.objects.all(
         ).order_by('-created_time')[:4]
         return super(IndexView, self).get_context_data(**kwargs)
+
+
+def index(request):
+    article_list = Article.objects.filter(status="p").order_by('-created_time')
+    pages, article_list = getpages(request, article_list)
+
+    kwargs = dict()
+    kwargs['pages'] = pages
+    kwargs['article_list'] = article_list
+    kwargs['category_list'] = Category.objects.all()
+    kwargs['tag_list'] = Tag.objects.all()
+    return render(request, 'blog/index.html', kwargs)
 
 
 # 文章详情函数
@@ -78,7 +97,6 @@ class ArticleDetailView(DetailView):
 
     # 为模板添加分类和标签上下文变量
     def get_context_data(self, **kwargs):
-
         article = self.get_object()
 
         article_content_type = ContentType.objects.get_for_model(article)

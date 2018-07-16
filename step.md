@@ -125,7 +125,7 @@ python manage.py migrate
 5. 配置头像上传路径
 ```python
 # settings.py
-
+import os
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  # store
 MEDIA_URL = '/media/'  # browser use
 ```
@@ -182,4 +182,48 @@ referer = request.META.get("HTTP_REFERER", '/')
 
 if user is not None:
     return redirect(referer)
+```
+
+-----
+### 问题
+> django.db.utils.OperationalError: (2059, <NULL>)
+
+
+```html
+
+ <!--{% paginate article_list 6 %} -->
+
+<!--
+    <ul class='pagination justify-content-center'>
+        {% if article_list %}
+            {% if article_list.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ article_list.previous_page_number }}">&laquo;</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link disabled" style="color:red; font-size: 20px; margin-bottom: 2px;">&laquo;</a></li>
+            {% endif %}
+
+            {% for page in pages.page_range_ex %}
+                {% if page == '...' %}
+                    <li class="page-item"><a class="page-link" href="#">...</a></li>
+                {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+                {% endif %}
+            {% endfor %}
+
+
+            {% for page in pages %}
+                <li class="page-item"><a class="page-link" href="?page={{ page }}">{{ page }}</a></li>
+            {% endfor %}
+
+            {% if article_list.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ article_list.next_page_number }}">&raquo;</a></li>
+            {% else %}
+                <li class="page-item"><a class="page-link disabled">&raquo;</a></li>
+            {% endif %}
+
+        {% else %}
+            <li class="page-item"><p>暂时没有文章</p></li>
+        {% endif %}
+    </ul>
+-->
 ```
