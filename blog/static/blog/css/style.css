@@ -36,7 +36,7 @@ header {
 header h1 {
     font-size: 50px;
     padding-top: 20px;
-    font-weight: 0;
+    font-weight: normal;
     font-family: 'Pacifico', cursive;
 }
 
@@ -150,7 +150,7 @@ hr {
     display: block;
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5)
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5){}
 .quote-icon, .rotate-quote-mark {
     background-image: url(../imgs/quotation_mark@2x.png);
 }
@@ -504,4 +504,19 @@ a:active {
     padding: 5px 25px;
     border: 1px solid #bcbcbc;
     
+}
+
+/**************************************************/
+/*一言*/
+.hitokoto {
+    border-bottom: 1px solid #cccccc;
+    border-top: 1px solid #cccccc;
+    margin: 10px 0 40px 0;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.hitokoto p {
+    margin: 0;
+    padding: 0;
 }
