@@ -40,3 +40,5 @@
 1. 增加一言功能
 2. 使用接口：https://api.lwl12.com/hitokoto/main/get
 
+### 2018.07.29
+1. 增加博客文章的站点地图 sitemap

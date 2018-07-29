@@ -1,9 +1,5 @@
 from django.db import models
-
-# Create your models here.
-
-from django.db import models
-#from DjangoUeditor.models import UEditorField
+from django.urls import reverse
 
 
 class Article(models.Model):
@@ -14,13 +10,6 @@ class Article(models.Model):
 
     title = models.CharField(max_length=100, verbose_name=u'标题')
     body = models.TextField(verbose_name=u'正文')
-    # body = RichTextUploadingField()
-    # body = UEditorField('内容', height=300, width=1000,
-    #                     default=u'', blank=True, imagePath="uploads/images/",
-    #                     toolbars='besttome', filePath='uploads/files/')
-    # image = models.URLField(
-    # blank=True, default="http://owgxfd8jv.bkt.clouddn.com/HollowRock.jpg", verbose_name=u'封面图片')
-    #image = models.FileField(upload_to='blog/uploads/')
     image = models.FileField()
 
     # auto_now_add 创建时间戳，不会被覆盖
@@ -46,6 +35,9 @@ class Article(models.Model):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse('blog:detail', args=[str(self.id)])
 
     class Meta:
         ordering = ['-created_time']
@@ -114,10 +106,3 @@ class LinkCategory(models.Model):
     def __str__(self):
         return self.name
 
-
-# from mdeditor.fields import MDTextField
-
-
-# class ExampleModel(models.Model):
-#     name = models.CharField(max_length=10)
-#     content = MDTextField()
