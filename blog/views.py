@@ -1,25 +1,19 @@
 from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse, HttpResponseRedirect
 from django.views.generic import ListView, DetailView
-from django.shortcuts import get_list_or_404, redirect, get_object_or_404
-from django.urls import reverse
-from django.contrib import auth
 from django.utils.six import BytesIO
 from django.contrib.contenttypes.models import ContentType
 
-# Create your views here.
 
-from .models import Article, Category, Tag, Link, LinkCategory
+from .models import Article, Category, Tag, Link, LinkCategory, IPLogs
 from comment.models import Comment
 
 from blog.templatetags.paginate_tags import getpages
 
 import markdown
-import re
 import qrcode
 import base64
 
-
+'''
 # 首页函数
 class IndexView(ListView):
     template_name = "blog/index.html"
@@ -50,11 +44,27 @@ class IndexView(ListView):
         kwargs['recent_articles'] = Article.objects.all(
         ).order_by('-created_time')[:4]
         return super(IndexView, self).get_context_data(**kwargs)
+'''
 
 
 def index(request):
     article_list = Article.objects.filter(status="p").order_by('-created_time')
     pages, article_list = getpages(request, article_list)
+
+    if 'HTTP_X_FORWARDED_FOR' in request.META:
+        ip = request.META['HTTP_X_FORWARDED_FOR']
+    else:
+        ip = request.META['REMOTE_ADDR']
+    print(ip)
+
+    ips = [ip.ip for ip in IPLogs.objects.all()]
+
+    if ip not in ips:
+        IPLogs.objects.create(ip=ip)
+    else:
+        ipInstant = IPLogs.objects.get(ip=ip)
+        ipInstant.visit_times += 1
+        ipInstant.save()
 
     kwargs = dict()
     kwargs['pages'] = pages
@@ -81,6 +91,7 @@ class ArticleDetailView(DetailView):
         obj = super(ArticleDetailView, self).get_object()
 
         # views 增加阅读量
+
         obj.views += 1
         obj.save()
 

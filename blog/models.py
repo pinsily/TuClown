@@ -106,3 +106,19 @@ class LinkCategory(models.Model):
     def __str__(self):
         return self.name
 
+
+# 记录访问IP
+class IPLogs(models.Model):
+    ip = models.GenericIPAddressField()
+    created_time = models.DateTimeField('创建时间', auto_now_add=True)
+    visit_times = models.IntegerField(default=1)
+    latest_time = models.DateTimeField('最近访问时间', auto_now=True)
+
+    class Meta:
+        db_table = 'iplogs'
+        ordering = ['created_time']
+
+    def __str__(self):
+        return self.ip
+
+

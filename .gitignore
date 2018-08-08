@@ -7,7 +7,7 @@ dist
 .idea
 build
 
-blog/migration
+blog/migrations
 comment/migration
 static/
 .qiniu_pythonsdk_hostscache.json
