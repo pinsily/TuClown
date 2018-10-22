@@ -11,5 +11,5 @@ blog/migrations
 comment/migration
 static/
 .qiniu_pythonsdk_hostscache.json
-TuClown/settings.py
+#TuClown/settings.py
 cdnstatic/
