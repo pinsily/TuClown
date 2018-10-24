@@ -10,6 +10,7 @@ build
 blog/migrations
 comment/migration
 static/
+debug.log
 .qiniu_pythonsdk_hostscache.json
 #TuClown/settings.py
 cdnstatic/

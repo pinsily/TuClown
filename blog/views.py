@@ -55,7 +55,6 @@ def index(request):
         ip = request.META['HTTP_X_FORWARDED_FOR']
     else:
         ip = request.META['REMOTE_ADDR']
-    print(ip)
 
     ips = [ip.ip for ip in IPLogs.objects.all()]
 
