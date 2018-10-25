@@ -3,6 +3,8 @@ from django.contrib.contenttypes.models import ContentType
 
 # Create your views here.
 
+from django.core.mail import send_mail
+
 from .models import Comment
 
 
@@ -44,6 +46,14 @@ def comment(request):
         comment.content_object = model_obj
 
         comment.save()
+
+        # 评论后发送邮件
+        send_mail(
+            '博客有新评论',
+            '评论者：\n' + comment.user_name + '\n\r评论内容：\n' + comment.text + '\n\r评论者邮箱：\n' + comment.user_email,
+            '13160724868@163.com',
+            ['13160724868@163.com'],
+        )
 
         # 评论后回到原页面
         referer = request.META.get(
