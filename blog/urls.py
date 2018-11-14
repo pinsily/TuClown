@@ -11,5 +11,4 @@ urlpatterns = [
     path('archive', views.ArchiveView.as_view(), name="archive"),
     path('category', views.CategoryView.as_view(), name="category"),
     path('tag', views.TagView.as_view(), name="tag"),
-    path('navigation', views.NavigationView.as_view(), name="navigation"),
 ]

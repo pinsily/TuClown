@@ -7,18 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>{% block title %}TuClown | TuClown{% endblock %}</title>
-
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
-
     <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
-
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/hover.css' %}">
-
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
-
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/style.css' %}">
-
-    <!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
 
     {% block ownstatic %}
@@ -55,12 +48,8 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'blog:category' %}">Category</a>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'blog:navigation' %}">Nav</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="http://blog.pinsily.site/admin">Admin</a>
+                            <a class="nav-link" href="http://127.0.0.1:8000/admin">Admin</a>
                         </li>
                     </ul>
                 </div>
@@ -70,7 +59,6 @@
 
     <div class="hitokoto">
         <div>
-{#            百分之五十？我更喜欢百分之百呢！ ——《全职高手》#}
             <p class="hitokoto-one"></p>
         </div>
     </div>
@@ -106,7 +94,6 @@
 
     $(document).ready(function(){
       $.get("https://api.lwl12.com/hitokoto/main/get", function(data,status){
-        console.log(data);
         $(".hitokoto-one").text(data);
       });
     });

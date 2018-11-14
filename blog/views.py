@@ -1,3 +1,4 @@
+from django.db.models import Sum
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.utils.six import BytesIO
@@ -10,44 +11,14 @@ from comment.models import Comment
 from blog.templatetags.paginate_tags import getpages
 
 import markdown
-import qrcode
-import base64
-
-'''
-# 首页函数
-class IndexView(ListView):
-    template_name = "blog/index.html"
-
-    # 获取数据表数据
-    context_object_name = "article_list"
-
-    def get_queryset(self):
-        """过滤数据，并转换markdown为html
-        """
-        article_list = Article.objects.filter(
-            status="p").order_by('-created_time')
-        # print(self.request.META['REMOTE_ADDR'])
-        return article_list
-
-    # 为模板添加分类和标签上下文变量
-    def get_context_data(self, **kwargs):
-        # 获得分页的信息
-        pages, temp = getpages(self.request, self.get_queryset())
-        kwargs['pages'] = pages
-        self.article_list = temp
-
-        kwargs['category_list'] = Category.objects.all()
-        kwargs['stick_articles'] = Article.objects.filter(topped=True)
-        kwargs['current_page'] = 'home'
-        kwargs['home'] = True
-        kwargs['tag_list'] = Tag.objects.all()
-        kwargs['recent_articles'] = Article.objects.all(
-        ).order_by('-created_time')[:4]
-        return super(IndexView, self).get_context_data(**kwargs)
-'''
 
 
 def index(request):
+    """博客首页
+
+    :param request:
+    :return: kwargs
+    """
     article_list = Article.objects.filter(status="p").order_by('-created_time')
     pages, article_list = getpages(request, article_list)
 
@@ -68,8 +39,10 @@ def index(request):
     kwargs = dict()
     kwargs['pages'] = pages
     kwargs['article_list'] = article_list
-    kwargs['category_list'] = Category.objects.all()
-    kwargs['tag_list'] = Tag.objects.all()
+    kwargs['favs'] = Article.objects.aggregate(favs=Sum("likes"))["favs"]
+    kwargs['views'] = IPLogs.objects.aggregate(views=Sum("visit_times"))["views"]
+    kwargs['blogs'] = Article.objects.count()
+    kwargs['visiters'] = IPLogs.objects.count()
     return render(request, 'blog/index.html', kwargs)
 
 
@@ -173,29 +146,3 @@ class CategoryView(ListView):
         kwargs['category'] = True
         return super(CategoryView, self).get_context_data(**kwargs)
 
-
-# 导航页面
-class NavigationView(ListView):
-    model = LinkCategory
-    context_object_name = 'linkcategory_list'
-    template_name = 'blog/navigation.html'
-
-    # 为模板添加分类和标签上下文变量
-    def get_context_data(self, **kwargs):
-        kwargs['navigation'] = True
-        link_qr_dict = {}
-        link_list = Link.objects.all()
-        for link in link_list:
-            link_qr_dict[link.id] = self.generate_qrcode(link.url)
-        kwargs['link_qr_dict'] = link_qr_dict
-        return super(NavigationView, self).get_context_data(**kwargs)
-
-    def generate_qrcode(self, data):
-        img = qrcode.make(data)
-
-        buf = BytesIO()
-        img.save(buf)
-        image_stream = buf.getvalue()
-        image_stream = base64.b64encode(image_stream)
-
-        return str(image_stream)[2:-1]

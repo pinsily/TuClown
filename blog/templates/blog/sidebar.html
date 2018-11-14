@@ -1,50 +1,95 @@
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'blog/css/slibar.css' %}">
+
 <div class="col-sm-12 col-md-4 sidebar d-none d-sm-block d-xs-block d-md-block" id='sidebar'>
     <div id="sidebar-float">
-        <div class="card">
-            <div class="card-header">分类</div>
-            <div class="card-body">
-                <ul class="web-tag">
-                {% for category in category_list %}
-                   <li class="web-tag-list">
-                    <a href="#">{{ category.name }}</a>
-                    </li>
-                {% endfor %}
-                </ul>
+
+        <div class="box">
+            <div class="cell">
+                <div class="cell-image" style="text-align:center; margin: 0 auto;">
+                    <img class="rounded-circle" src="{% static 'blog/imgs/head.jpg' %}" alt="">
+                    <div style="font-family: 'Pacifico', cursive;" class="fades">Pinsily</div>
+                </div>
+
+            </div>
+            <div class="cell">
+                <div style="text-align: center;">
+                    <p>朽木自雕，烂泥自扶</p>
+                </div>
             </div>
         </div>
-        <div class="card">
-            <div class="card-header">标签</div>
-            <div class="card-body">
-                {% for tag in tag_list %}
-                    <li class="web-tag-list">
-                    <a href="#">{{ tag.name }}</a>
-                    </li>
-                {% endfor %}
+
+        <div class="box">
+            <div class="cell">
+                <div class="fades">数据中心</div>
+            </div>
+            <div class="cell">
+                <div>
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <p>{{ views }}</p>
+                            <p>访问量</p>
+                        </div>
+                        <div class="col-4">
+                            <p>{{ favs }}</p>
+                            <p>点赞量</p>
+                        </div>
+                        <div class="col-4">
+                            <p>{{ visiters }}</p>
+                            <p>访客量</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="cell">
+                <div>
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <p>{{ blogs }}</p>
+                            <p>文章数量</p>
+                        </div>
+                        <div class="col-8">
+                            <p id="span_dt_dt" style="line-height: 300%;"></p>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
-<!-- 
-        <div class="card" id="card">
-            <div class="card-header">标签</div>
-            <div class="card-body">
-                {% for tag in tag_list %}
-                    <li class="web-tag-list">
-                    <a href="#">{{ tag.name }}</a>
-                    </li>
-                {% endfor %}
-            </div>
-        </div>
-         -->
+
     </div>
 </div>
 
-<script type="text/javascript">
+<script type="text/javascript" data-no-instant="">
     var elementPosition = $('#sidebar-float').offset().top;
     var objWidth = $('#sidebar').width();
-    $(window).scroll(function(){
-            if($(window).scrollTop() > elementPosition){
-                  $('#sidebar-float').css('position','fixed').css('top','0').css('width',objWidth);
-            } else {
-                $('#sidebar-float').css('position','static');
-            }
+    $(window).scroll(function () {
+        if ($(window).scrollTop() > elementPosition) {
+            $('#sidebar-float').css('position', 'fixed').css('top', '0').css('width', objWidth);
+        } else {
+            $('#sidebar-float').css('position', 'static');
+        }
     });
+
+
+    function show_date_time() {
+        window.setTimeout("show_date_time()", 1e3);
+        var BirthDay = new Date("August 15,2017 18:19:35"),
+            today = new Date,
+            timeold = today.getTime() - BirthDay.getTime(),
+            msPerDay = 864e5,
+            e_daysold = timeold / msPerDay,
+            daysold = Math.floor(e_daysold),
+            e_hrsold = 24 * (e_daysold - daysold),
+            hrsold = Math.floor(e_hrsold),
+            e_minsold = 60 * (e_hrsold - hrsold),
+            minsold = Math.floor(60 * (e_hrsold - hrsold)),
+            seconds = Math.floor(60 * (e_minsold - minsold));
+        span_dt_dt.innerHTML = "<font color=black>" + daysold + "</font> 天 <font color=black>" + hrsold + "</font> 时 <font color=black>" + minsold + "</font> 分 <font color=black>" + seconds + "</font> 秒";
+    }
+
+    show_date_time();
+
+
 </script>
