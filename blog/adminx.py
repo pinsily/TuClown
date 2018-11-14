@@ -1,9 +1,8 @@
-#from django.contrib import admin
+# -*- coding: utf-8 -*-
+
 from .models import Article, Category, Tag, Link, LinkCategory
-# from django_markdown.admin import MarkdownModelAdmin
 
 import xadmin
-# Register your models here.
 
 '''
 class GlobalSetting(object):
