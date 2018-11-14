@@ -1,11 +1,10 @@
 from django.db.models import Sum
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
-from django.utils.six import BytesIO
 from django.contrib.contenttypes.models import ContentType
 
 
-from .models import Article, Category, Tag, Link, LinkCategory, IPLogs
+from .models import Article, Category, Tag, IPLogs
 from comment.models import Comment
 
 from blog.templatetags.paginate_tags import getpages
