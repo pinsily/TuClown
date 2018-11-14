@@ -4,27 +4,27 @@ from django.conf.urls.static import static
 
 from django.contrib.sitemaps.views import sitemap
 
-
 import xadmin
+
 xadmin.autodiscover()
 
 from xadmin.plugins import xversion
+
 xversion.register_models()
 
 import os
 import django
 
 from sitemap import ArticleSiteMap, StaticViewSitemap
+from blog.feeds import AllArticalRssFeed
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "TuClown.settings")
 django.setup()
-
 
 sitemaps = {
     'blog': ArticleSiteMap,
     'static': StaticViewSitemap
 }
-
 
 urlpatterns = [
     path('admin/', xadmin.site.urls, name="admin"),
@@ -32,6 +32,7 @@ urlpatterns = [
     path('comment/', include('comment.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
+    path("rss/", AllArticalRssFeed(), name="rss"),
 ]
 
 if settings.DEBUG:
