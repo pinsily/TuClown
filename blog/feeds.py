@@ -22,7 +22,7 @@ class AllArticalRssFeed(Feed):
         return models.Article.objects.all()
 
     def item_title(self, item):
-        return "{1}".format(item.title)
+        return "{0}".format(item.title)
 
     def item_description(self, item):
         # markdown to html

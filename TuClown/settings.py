@@ -11,7 +11,7 @@ SITE_ID = 1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['blog.pinsily.site', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
