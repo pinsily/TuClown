@@ -1,3 +1,4 @@
+from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,7 +28,8 @@ sitemaps = {
 }
 
 urlpatterns = [
-    path('admin/', xadmin.site.urls, name="admin"),
+    path('xadmin/', xadmin.site.urls, name="xadmin"),
+    path('admin/', admin.site.urls, name="admin"),
     path('', include('blog.urls')),
     path('comment/', include('comment.urls')),
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
