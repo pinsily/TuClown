@@ -9,6 +9,7 @@ body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    font-family: "lucida grande", "lucida sans unicode", lucida, helvetica, "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
 }
 
 
@@ -108,7 +109,7 @@ hr {
 
 .post-wrap {
     background-color: rgba(255,255,255,0.4);
-    border-top: solid 3px #1ba1e2;
+    /*border-top: solid 3px #1ba1e2;*/
     padding: 20px 30px 15px 30px;
     margin: 0 5px 50px 5px;
     border-radius: 5px;
@@ -398,23 +399,28 @@ a:active {
 /*----------------------------------------------------*/
 /*article-detail*/
 .article-body {
-    background-color: white;
+    /*background-color: rgba(255,255,255,0.5);*/
     padding-top: 20px;
     border: solid #bcbcbc 1px;
     border-radius: 15px;
-    border-top: solid 3px #1ba1e2;
+    /*border-top: solid 3px #1ba1e2;*/
 }
 
 .article-info {
     margin: 25px 0 0 0;
 }
 
+.article-body p {
+    line-height: 1.75;
+}
+
+
 /*---------------------------------------------------------*/
 /*comment*/
 .comment-list {
-    background-color: white;
+    /*background-color: white;*/
     border: solid #bcbcbc 1px;
-    border-top: solid 3px #1ba1e2;
+    border-top: solid 1px #1ba1e2;
     border-radius: 15px;
     margin: 50px 0 100px 0;
     padding-top: 20px;

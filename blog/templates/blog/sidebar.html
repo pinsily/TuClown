@@ -9,7 +9,11 @@
             <div class="cell">
                 <div class="cell-image" style="text-align:center; margin: 0 auto;">
                     <img class="rounded-circle" src="{% static 'blog/imgs/head.jpg' %}" alt="">
-                    <div style="font-family: 'Pacifico', cursive;" class="fades">Pinsily</div>
+                </div>
+                <div>
+                    <div style="font-family: 'Pacifico', cursive;text-align:center; cursor: pointer;" class="fades">
+                        <p>Pinsily&nbsp;&nbsp;<a href="{% url 'rss' %}"><i class="fa fa-rss fades" title="RSS订阅"></i></a></p>
+                    </div>
                 </div>
 
             </div>

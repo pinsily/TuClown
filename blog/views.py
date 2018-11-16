@@ -3,7 +3,6 @@ from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.contrib.contenttypes.models import ContentType
 
-
 from .models import Article, Category, Tag, IPLogs
 from comment.models import Comment
 
@@ -68,12 +67,13 @@ class ArticleDetailView(DetailView):
 
         # markdown to html
         extensions = ['markdown.extensions.extra',
+                      'markdown.extensions.fenced_code',
                       'markdown.extensions.codehilite',
                       'markdown.extensions.tables',
                       'markdown.extensions.toc'
                       ]
 
-        obj.body = markdown.markdown(obj.body, extensions=extensions)
+        obj.body = markdown.markdown(obj.body, extensions=extensions, safe_mode=True, enable_attributes=False)
         # print(obj.body)
         return obj
 
@@ -144,4 +144,3 @@ class CategoryView(ListView):
         kwargs['tag_list'] = Tag.objects.all().order_by('name')
         kwargs['category'] = True
         return super(CategoryView, self).get_context_data(**kwargs)
-

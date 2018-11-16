@@ -8,7 +8,7 @@ dist
 build
 
 blog/migrations
-comment/migration
+comment/migrations
 ./static/
 debug.log
 .qiniu_pythonsdk_hostscache.json
