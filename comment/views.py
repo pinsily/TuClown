@@ -52,7 +52,7 @@ def comment(request):
             '博客有新评论',
             '评论者：\n' + comment.user_name + '\n\r评论内容：\n' + comment.text + '\n\r评论者邮箱：\n' + comment.user_email,
             '13160724868@163.com',
-            ['2608927151@qq.com']
+            ['13160724868@163.com']
         )
 
         # 评论后回到原页面
