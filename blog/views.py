@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from django.db.models import Sum
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView

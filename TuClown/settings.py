@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 import os
 
 from importlib import reload
@@ -210,3 +209,16 @@ LOGGING = {
         }
     },
 }
+
+# ##################################### #
+# ############ 邮件发送 ################ #
+# ##################################### #
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_USE_SSL = True  # 这两个必须互斥，只能一个为真
+EMAIL_USE_TLS = False
+EMAIL_HOST = 'smtp.163.com'
+EMAIL_PORT = 465
+EMAIL_HOST_USER = '13160724868@163.com'
+SERVER_EMAIL = '13160724868@163.com'
+EMAIL_HOST_PASSWORD = 'Peng96090621'
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
