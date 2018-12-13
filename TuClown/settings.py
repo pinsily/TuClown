@@ -134,10 +134,10 @@ CKEDITOR_UPLOAD_PATH = 'upload/'
 QINIU_ACCESS_KEY = 'e9U2fxCnxJt_4_lhPCv-e4DVP-MkHJv90v2TtBAb'
 QINIU_SECRET_KEY = 'jf1WCQU03pasvKlWsuMYV8PLOXt4eEdXZQ5jsIEY'
 QINIU_BUCKET_NAME = 'django'
-QINIU_BUCKET_DOMAIN = 'p9w6udf2c.bkt.clouddn.com'
+QINIU_BUCKET_DOMAIN = 'csn.pinsily.site'
 QINIU_SECURE_URL = False  # 使用http
 
-# http://p9w6udf2c.bkt.clouddn.com/10-18818.jpg
+# http://cdn.pinsiy.site/10-18818.jpg
 
 PREFIX_URL = 'http://'
 
