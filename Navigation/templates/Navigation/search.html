@@ -1,36 +1,64 @@
 {% load static %}
-<div class="logo">
-    <a href="{{ setting.url }}">
-        <i>
-            <img src="{{ setting.image.url }}">
-        </i>
-        <span style="display: block; font-size: 14px;">{{ setting.name }}</span>
-        <span style="display: block; font-size: 12px; color:rgb(97, 82, 74);">{{ setting.url }}</span>
 
-    </a>
 
+<div class="block" style="margin-top: 20px;" id="search">
+
+    <h3>
+        <b>Search</b>
+    </h3>
+
+    <div class="text-center">
+
+
+        <form method=get action="" target="_blank" id="search-form" class="form-inline justify-content-center">
+            <div class="form-group">
+                <div class="search-group">
+                    <select class="engine" name="engine" id="engine" onchange="chooseEngine(this)">
+                        <option value="google">
+                            Google
+                        </option>
+                        <option value="baidu">baidu</option>
+                    </select>
+                    <input class="search-text" type="text" name="" size=40 maxlength=255 id="search-text"
+                           placeholder="">
+                </div>
+            </div>
+        </form>
+    </div>
 
 </div>
 
-<div class="sidebar-group">
-    <div class="sidebar-item">
-        <a href="#search">
-            <i></i>
-            <span>搜索</span>
-        </a>
-    </div>
+<script>
+    function chooseEngine(select) {
+        var engine = $(select).val();
 
-    {% for item in categories %}
+        switch (engine) {
+            case "google":
+                $("#search-text").attr("name", "q");
+                $("#search-text").attr("placeholder", "Google");
+                $("#search-form").attr("action", "http://www.google.com/search");
+                break;
+            case "baidu":
+                $("#search-text").attr("name", "word");
+                $("#search-text").attr("placeholder", "Baidu");
+                $("#search-form").attr("action", "http://www.baidu.com/baidu");
+
+        }
+
+    }
+</script>
 
 
 
-    <div class="sidebar-item">
-        <a href="#{{ item.english_name }}">
-            <i></i>
-            <span>{{ item.name }}</span>
-        </a>
-    </div>
 
-    {% endfor %}
 
-</div>
+
+
+
+
+
+
+
+
+
+

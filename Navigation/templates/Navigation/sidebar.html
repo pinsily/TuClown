@@ -1,11 +1,11 @@
 {% load static %}
 <div class="logo">
-    <a href="">
+    <a href="{{ setting.url }}">
         <i>
-            <img src="{% static 'Navigation/imgs/wechat.png' %}">
+            <img src="{{ setting.image.url }}">
         </i>
-        <span style="display: block; font-size: 14px;">Clown导航</span>
-        <span style="display: block; font-size: 12px; color:rgb(97, 82, 74);">www.baidu.com</span>
+        <span style="display: block; font-size: 14px;">{{ setting.name }}</span>
+        <span style="display: block; font-size: 12px; color:rgb(97, 82, 74);">{{ setting.url }}</span>
 
     </a>
 
@@ -14,9 +14,9 @@
 
 <div class="sidebar-group">
     <div class="sidebar-item">
-        <a href="#">
+        <a href="#search">
             <i></i>
-            <span>首页</span>
+            <span>搜索</span>
         </a>
     </div>
 
