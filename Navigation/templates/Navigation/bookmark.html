@@ -1,0 +1,29 @@
+{% load static %}
+
+{% for category in categories %}
+
+    <div class="block" id="{{ category.english_name }}">
+
+        <h3>
+            <b>{{ category.name }}</b>
+        </h3>
+
+        <div class="row">
+
+            {% for bookmark in category.bookmark_set.all %}
+                <div class="col-3">
+                    <div class="block-item">
+                        <a href="{{ bookmark.url }}" target="_blank">
+                            <i>
+                                <img src="{{ bookmark.image.url }}" alt="">
+                            </i>
+                            <b>{{ bookmark.name }}</b>
+                            <span title="{{ bookmark.desc }}">{{ bookmark.desc }}</span>
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endfor %}

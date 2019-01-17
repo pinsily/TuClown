@@ -1,0 +1,169 @@
+.content {
+    background-color: rgb(241, 242, 249);
+}
+
+/*sidebar*/
+
+.sidebar {
+    height: 100%;
+    padding: 0 24px;
+    background: #30333C;
+}
+
+.logo {
+    height: 80px;
+    padding: 8px 0;
+    border-bottom: 1px rgba(255, 255, 255, .04) solid;
+}
+
+.logo a {
+    display: block;
+    height: 64px;
+    line-height: 18px;
+    color: #fff;
+    padding: 14px 0 14px 28px;
+    text-decoration: none;
+}
+
+.logo a i {
+    float: left;
+    width: 40px;
+    height:40px;
+    margin: 0 16px 0 0;
+    border-radius: 4px;
+    background-size: 32px;
+}
+
+.logo a i img {
+    width: 100%;
+}
+
+
+.sidebar-group {
+    font-size: 12px;
+}
+
+.sidebar-item {
+    transition: .2s;
+    height: 48px;
+    line-height: 46px;
+    background-size: 16px;
+    border-top: 1px rgba(255,255,255,.04) solid;
+    border-bottom: 1px rgba(255,255,255,.04) solid;
+    color: #fff;
+    font-weight: normal;
+}
+
+.sidebar-item a {
+    display: block;
+    color: #fff;
+    padding-left: 24px;
+    background-size: 16px;
+    text-decoration: none;
+
+}
+
+/*search*/
+.search {
+
+}
+
+.search-group {
+    margin: 20px 0 0 0;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 25px;
+    padding: 5px;
+}
+
+.engine {
+    border-radius: 5px;
+    outline: none;
+    padding: 7px;font-size:1rem;line-height:1.5;color:#495057;background-color:#fff;background-clip:padding-box;
+    border:none;
+}
+
+.search-text {
+    border-radius: 5px;
+    outline: none;
+    padding: 7px;font-size:1rem;line-height:1.5;color:#495057;background-clip:padding-box;
+    border:none;
+}
+
+/*bookmark*/
+.bookmark {
+
+}
+
+.block {
+    margin-bottom: 24px;
+    background: #fff;
+    border-radius: 4px;
+    padding: 0 12px 24px 12px;
+    overflow: hidden;
+}
+
+.block h3 {
+    display: block;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0 12px;
+    height: 56px;
+    line-height: 54px;
+    border-bottom: 2px rgba(0, 0, 0, .02) solid;
+    color: #30333c;
+}
+
+.block-item {
+    overflow: hidden;
+    border-radius: 4px;
+    transition: .2s;
+    background: rgba(0, 0, 0, .02);
+    margin: 24px 12px 0 12px;
+    text-decoration: none;
+
+}
+
+.block-item a:hover {
+    color: #6B7386;
+}
+
+.block-item a {
+    display: block;
+    height: 64px;
+    line-height: 18px;
+    padding: 14px 16px;
+    color: #A1A7B7;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.block-item a i {
+    float: left;
+    width: 32px;
+    height: 32px;
+    margin: 2px 16px 0 0;
+    border-radius: 4px;
+    background-size: 32px;
+    /*background: url("../imgs/wechat.png") no-repeat center;*/
+}
+
+.block-item a i img {
+    width: 100%;
+}
+
+.block-item a b {
+    display: block;
+    color: #30333C;
+    transition: .2s;
+}
+
+.block-item a span {
+    font-size: 12px;
+}
+
+
+
+
+/*search*/

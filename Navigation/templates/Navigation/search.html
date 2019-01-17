@@ -1,0 +1,64 @@
+{% load static %}
+
+
+<div class="block" id="" style="margin-top: 20px;">
+
+    <h3>
+        <b>Search</b>
+    </h3>
+
+    <div class="text-center">
+
+
+        <form method=get action="" target="_blank" id="search-form" class="form-inline justify-content-center">
+            <div class="form-group">
+                <div class="search-group">
+                    <select class="engine" name="engine" id="engine" onchange="chooseEngine(this)">
+                        <option value="google">
+                            Google
+                        </option>
+                        <option value="baidu">baidu</option>
+                    </select>
+                    <input class="search-text" type="text" name="" size=40 maxlength=255 id="search-text"
+                           placeholder="">
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+
+<script>
+    function chooseEngine(select) {
+        var engine = $(select).val();
+
+        switch (engine) {
+            case "google":
+                $("#search-text").attr("name", "q");
+                $("#search-text").attr("placeholder", "Google");
+                $("#search-form").attr("action", "http://www.google.com/search");
+                break;
+            case "baidu":
+                $("#search-text").attr("name", "word");
+                $("#search-text").attr("placeholder", "Baidu");
+                $("#search-form").attr("action", "http://www.baidu.com/baidu");
+
+        }
+
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

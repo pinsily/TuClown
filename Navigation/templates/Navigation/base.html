@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- css files -->
+    <link rel="stylesheet" href="{% static 'Navigation/css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'Navigation/css/bootstrap.min.css' %}">
+    {% comment %}<link rel="stylesheet" href="{% static 'Navigation/css/font-awesome.css' %}">{% endcomment %}
+    <link rel="stylesheet" href="{% static 'Navigation/css/style.css' %}">
+
+
+    {% block self-css %}
+    {% endblock %}
+
+
+</head>
+<body>
+
+{% block content %}
+
+{% endblock %}
+
+
+
+
+    <!-- js files -->
+    <script type="text/javascript" src="{% static 'Navigation/js/jquery.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Navigation/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'Navigation/js/popper.min.js' %}"></script>
+
+    {% block self-js %}
+
+    {% endblock %}
+</body>
+</html>
