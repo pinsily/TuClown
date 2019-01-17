@@ -5,9 +5,9 @@ from . import models
 # Create your views here.
 def index(request):
     categories = models.Category.objects.all()
-    bookmarks = models.Bookmark.objects.all()
+    setting = models.NavSetting.objects.get(useful=True)
     kwargs = {
         "categories": categories,
-        "bookmarks": bookmarks,
+        "setting": setting,
     }
     return render(request, 'Navigation/index.html', kwargs)

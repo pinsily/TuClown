@@ -31,6 +31,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'reversion',
     'comment',
+    'Navigation'
 ]
 
 MIDDLEWARE = [
@@ -220,5 +221,5 @@ EMAIL_HOST = 'smtp.163.com'
 EMAIL_PORT = 465
 EMAIL_HOST_USER = '13160724868@163.com'
 SERVER_EMAIL = '13160724868@163.com'
-EMAIL_HOST_PASSWORD = 'Peng96090621'
+EMAIL_HOST_PASSWORD = 'pinsily96'
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER

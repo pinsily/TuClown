@@ -1,4 +1,5 @@
 from django.db.models import Sum
+from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.contrib.contenttypes.models import ContentType
@@ -9,6 +10,7 @@ from comment.models import Comment
 from blog.templatetags.paginate_tags import getpages
 
 import markdown
+import json
 
 
 def index(request):
@@ -144,3 +146,19 @@ class CategoryView(ListView):
         kwargs['tag_list'] = Tag.objects.all().order_by('name')
         kwargs['category'] = True
         return super(CategoryView, self).get_context_data(**kwargs)
+
+
+def search(request):
+    text = request.GET["text"]
+
+    essays = Article.objects.filter(title__contains=text)
+
+    titles = [essay.title for essay in essays]
+    ids = [essay.id for essay in essays]
+
+    data = {
+        "titles": titles,
+        "ids": ids
+    }
+
+    return HttpResponse(json.dumps(data), content_type='application/json')

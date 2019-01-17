@@ -12,7 +12,8 @@
                 </div>
                 <div>
                     <div style="font-family: 'Pacifico', cursive;text-align:center; cursor: pointer;" class="fades">
-                        <p>Pinsily&nbsp;&nbsp;<a href="{% url 'rss' %}"><i class="fa fa-rss fades" title="RSS订阅"></i></a></p>
+                        <p>Pinsily&nbsp;&nbsp;<a href="{% url 'rss' %}"><i class="fa fa-rss fades"
+                                                                           title="RSS订阅"></i></a></p>
                     </div>
                 </div>
 
@@ -26,7 +27,30 @@
 
         <div class="box">
             <div class="cell">
-                <div class="fades">数据中心</div>
+                <div class="fades">Search Center</div>
+            </div>
+            <div class="cell">
+                <div>
+                    <div class="row text-center" id="search-center" tabindex="0" outline=0" hidefocus="true">
+                        <div class="col-12 form-group" style="margin-bottom: 0;">
+                            <input type="text" id="search-text" class="form-control" placeholder="Search"
+                                   style="padding: 5px 10px; font-size: 14px;">
+
+                            <div id="search-result" style="text-align: left; max-height: 200px; overflow: auto;">
+                                <ul class="search-li" id="search-li" style="font-size: 14px;">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="box">
+            <div class="cell">
+                <div class="fades">Data Center</div>
             </div>
             <div class="cell">
                 <div>
@@ -74,6 +98,38 @@
         } else {
             $('#sidebar-float').css('position', 'static');
         }
+    });
+
+    /*
+    * 实时获得搜索结果
+    * **/
+    $(document).ready(function () {
+
+        $("#search-text").keyup(function () {
+            var text = $("#search-text").val();
+            $.get("{% url 'blog:search' %}", {"text": text}, function (data) {
+                //console.log(data);
+                titles = data['titles'];
+                ids = data['ids'];
+                for (var i = 0; i < titles.length; i++) {
+                    var id = ids[i];
+                    var url = "";
+                    $("#search-li").append('<li><a class="search-a" href="/article/'+id+'">' + titles[i] + '</a></li>');
+                }
+            });
+        });
+
+        $("#search-text").keydown(function () {
+            $('#search-li').empty();
+        });
+
+       $("#search-center").blur(function () {
+           //$('#search-result').blur(function(){
+                //console.log("hello");
+               $('#search-li').empty();
+           //});
+        });
+
     });
 
 

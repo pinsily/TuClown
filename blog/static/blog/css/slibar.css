@@ -32,3 +32,15 @@
 .fades {
     color: rgba(0,0,0,0.5);
 }
+
+
+.search-li li, .search-li a {
+    font-size: 14px;
+    padding: 5px 3px;
+}
+
+.search-a {
+    font-size: 13px;
+    padding: 1px 3px;
+    line-height: 17px;
+}

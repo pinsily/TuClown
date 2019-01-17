@@ -35,3 +35,18 @@ class Bookmark(CommonClass):
 
     def __str__(self):
         return "{0} - {1}".format(self.cate, self.name)
+
+
+class NavSetting(CommonClass):
+    name = models.CharField(max_length=255, verbose_name="导航栏名称")
+    url = models.URLField(verbose_name="导航栏网址")
+    image = models.FileField(upload_to="bookmark/uploads/")
+    desc = models.CharField(max_length=255, verbose_name="导航栏描述")
+    useful = models.BooleanField(verbose_name="是否使用")
+
+    class Meta:
+        db_table = "nav_setting"
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
