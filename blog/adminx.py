@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from .models import Article, Category, Tag, Link, LinkCategory
+from .models import Article, Category, Tag, Link, LinkCategory, IPLogs
 
 import xadmin
 
@@ -44,18 +44,21 @@ class TagAdmin(object):
     list_display = ['name', 'created_time']
 
 
-class LinkAdmin(object):
-    list_display = ['name', 'url']
+# class LinkAdmin(object):
+#     list_display = ['name', 'url']
+#
+#
+# class LinkCategoryAdmin(object):
+#     list_display = ['name']
 
 
-class LinkCategoryAdmin(object):
-    list_display = ['name']
+class IpLogAdmin(object):
+    list_display = ['ip', 'created_time', 'visit_times', "latest_time"]
 
 
 xadmin.site.register(Article)
-# xadmin.site.register(Article, MarkdownModelAdmin)
 xadmin.site.register(Category, CategoryAdmin)
 xadmin.site.register(Tag, TagAdmin)
-xadmin.site.register(Link, LinkAdmin)
-xadmin.site.register(LinkCategory, LinkCategoryAdmin)
-# xadmin.site.register(ExampleModel)
+# xadmin.site.register(Link, LinkAdmin)
+# xadmin.site.register(LinkCategory, LinkCategoryAdmin)
+xadmin.site.register(IPLogs, IpLogAdmin)

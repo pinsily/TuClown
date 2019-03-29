@@ -14,7 +14,7 @@ class Comment(models.Model):
     content_object = GenericForeignKey('content_type', 'object_id')
 
     # 评论内容
-    text = models.TextField()
+    text = models.TextField(verbose_name='评论内容')
 
     user_name = models.CharField('评论者名字', max_length=100)
     user_email = models.EmailField(
