@@ -54,6 +54,7 @@ class TagAdmin(object):
 
 class IpLogAdmin(object):
     list_display = ['ip', 'created_time', 'visit_times', "latest_time"]
+    ordering = ['-created_time']
 
 
 xadmin.site.register(Article)

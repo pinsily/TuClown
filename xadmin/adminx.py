@@ -81,10 +81,16 @@ class GlobalSettings(object):
                 {'title': 'comment', 'url': self.get_model_url(
                     comment_models.Comment, 'changelist')},
             )},
-            {'title': 'Ip Log', 'menus': (
-                {'title': 'ip', 'url': self.get_model_url(
-                    blog_models.IPLogs, 'changelist')},
+            {'title': 'Navigation', 'menus': (
+                {'title': 'Bookmark', 'url': self.get_model_url(
+                    nav_models.Bookmark, 'changelist')},
+                {'title': 'BookCategory', 'url': self.get_model_url(
+                    nav_models.Category, 'changelist')},
+                {'title': 'Setting', 'url': self.get_model_url(
+                    nav_models.NavSetting, 'changelist')},
             )},
+
+
         )
 
     # 可以重写此方法，使右侧菜单栏只有上面添加的项
