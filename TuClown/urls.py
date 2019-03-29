@@ -31,7 +31,7 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
     path("rss/", AllArticalRssFeed(), name="rss"),
-    path('nav/', include('Navigation.urls'))
+    path('nav/', include('Navigation.urls', namespace='navigation'))
 ]
 
 if settings.DEBUG:

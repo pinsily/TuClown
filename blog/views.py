@@ -29,12 +29,12 @@ def index(request):
 
     ips = [ip.ip for ip in IPLogs.objects.all()]
 
-    if ip not in ips:
-        IPLogs.objects.create(ip=ip)
-    else:
+    try:
         ipInstant = IPLogs.objects.get(ip=ip)
         ipInstant.visit_times += 1
         ipInstant.save()
+    except IPLogs.DoesNotExist:
+        IPLogs.objects.create(ip=ip)
 
     kwargs = dict()
     kwargs['pages'] = pages
