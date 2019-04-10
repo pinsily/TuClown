@@ -53,9 +53,9 @@ xadmin.site.register(views.BaseAdminView, BaseSetting)
 
 class GlobalSettings(object):
     site_title = "pinsily's blog"
-    site_footer = "Copyright @2019-2020 pinsily All Rights Reserved"
+    site_footer = "Copyright @2017-2019 pinsily All Rights Reserved"
     # 菜单可折叠
-    # menu_style = "accordion"
+    menu_style = "accordion"
 
     # 自定义新增菜单栏
     def get_site_menu(self):

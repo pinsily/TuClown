@@ -1,47 +1,58 @@
 # -*- coding: utf-8 -*-
 
-from .models import Article, Category, Tag, Link, LinkCategory, IPLogs
+from .models import Article, Category, Tag, IPLogs
 
 import xadmin
 
-'''
-class GlobalSetting(object):
-    site_title = "Pinsily.blog"
-    site_footer = 'pinsily blog'
-    # menu_style = 'accordion'
-
-    def get_site_menu(self):
-        return (
-            {'title': 'Blog', 'perm': self.get_model_perm(Article, 'change'), 'menus': (
-                {'title': 'Article', 'url': self.get_model_url(
-                    Article, 'changelist')},
-                {'title': 'Category', 'url': self.get_model_url(
-                    Category, 'changelist')},
-                {'title': 'Comment', 'url': self.get_model_url(
-                    Comment, 'changelist')},
-                {'title': 'Tag', 'url': self.get_model_url(Tag, 'changelist')},
-            )},
-        )
-
-    def get_nav_menu(self):
-        site_menu = list(self.get_site_menu() or [])
-        return site_menu
-
-
-xadmin.site.register(xadmin.views.CommAdminView, GlobalSetting)
-'''
-
 
 class ArticleAdmin(object):
+    # 要列出的字段
     list_display = ['title', 'created_time', 'status', 'category', 'tags']
+    # 可以搜索的字段
+    search_fields = ('title',)
+    # 列出可以编辑的字段
+    list_editable = ('status', 'topped',)
+    # 右侧过滤条件
+    list_filter = ('created_time',)
+    # icon
+    model_icon = "fa fa-book"
+    # 下拉框搜索，当有外键指向他时会以ajax方式加载，数据量过大时很有用
+    relfield_style = 'fk-ajax'
+    ordering = ['id']
+    # 后台可选刷新频率
+    refresh_times = [3, 5]
 
 
 class CategoryAdmin(object):
+    # 要列出的字段
     list_display = ['name', 'created_time']
+    # 可以搜索的字段
+    search_fields = ('name',)
+    # 右侧过滤条件
+    list_filter = ('created_time',)
+    # icon
+    model_icon = "fa fa-bookmark-o"
+    # 下拉框搜索，当有外键指向他时会以ajax方式加载，数据量过大时很有用
+    relfield_style = 'fk-ajax'
+    ordering = ['id']
+    # 后台可选刷新频率
+    refresh_times = [3, 5]
 
 
 class TagAdmin(object):
+    # 要列出的字段
     list_display = ['name', 'created_time']
+    # 可以搜索的字段
+    search_fields = ('name',)
+    # 右侧过滤条件
+    list_filter = ('created_time',)
+    # icon
+    model_icon = "fa fa-map"
+    # 下拉框搜索，当有外键指向他时会以ajax方式加载，数据量过大时很有用
+    relfield_style = 'fk-ajax'
+    ordering = ['id']
+    # 后台可选刷新频率
+    refresh_times = [3, 5]
 
 
 # class LinkAdmin(object):
@@ -55,11 +66,19 @@ class TagAdmin(object):
 class IpLogAdmin(object):
     list_display = ['ip', 'created_time', 'visit_times', "latest_time"]
     ordering = ['-created_time']
+    # 可以搜索的字段
+    search_fields = ('ip',)
+    # 右侧过滤条件
+    list_filter = ('created_time',)
+    # icon
+    model_icon = "fa fa-file-powerpoint-o"
+    # 下拉框搜索，当有外键指向他时会以ajax方式加载，数据量过大时很有用
+    relfield_style = 'fk-ajax'
+    # 后台可选刷新频率
+    refresh_times = [3, 5]
 
 
-xadmin.site.register(Article)
+xadmin.site.register(Article, ArticleAdmin)
 xadmin.site.register(Category, CategoryAdmin)
 xadmin.site.register(Tag, TagAdmin)
-# xadmin.site.register(Link, LinkAdmin)
-# xadmin.site.register(LinkCategory, LinkCategoryAdmin)
 xadmin.site.register(IPLogs, IpLogAdmin)
