@@ -31,18 +31,21 @@
             </div>
             <div class="cell">
                 <div>
-                    <div class="row text-center" id="search-center" tabindex="0" outline=0" hidefocus="true">
-                        <div class="col-12 form-group" style="margin-bottom: 0;">
-                            <input type="text" id="search-text" class="form-control" placeholder="Search"
-                                   style="padding: 5px 10px; font-size: 14px;">
+                    <form action="{% url 'blog:search' %}" method="get">
+                        {% csrf_token %}
+                        <div class="row text-center" id="search-center" tabindex="0">
+                            <div class="col-12 form-group" style="margin-bottom: 0;">
+                                <input type="text" name="text" id="search-text" class="form-control" placeholder="Search"
+                                       style="padding: 5px 10px; font-size: 14px;">
 
-                            <div id="search-result" style="text-align: left; max-height: 200px; overflow: auto;">
-                                <ul class="search-li" id="search-li" style="font-size: 14px;">
+                                <div id="search-result" style="text-align: left; max-height: 200px; overflow: auto;">
+                                    <ul class="search-li" id="search-li" style="font-size: 14px;">
 
-                                </ul>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -103,6 +106,7 @@
     /*
     * 实时获得搜索结果
     * **/
+    /*
     $(document).ready(function () {
 
         $("#search-text").keyup(function () {
@@ -114,7 +118,7 @@
                 for (var i = 0; i < titles.length; i++) {
                     var id = ids[i];
                     var url = "";
-                    $("#search-li").append('<li><a class="search-a" href="/article/'+id+'">' + titles[i] + '</a></li>');
+                    $("#search-li").append('<li><a class="search-a" href="/article/' + id + '">' + titles[i] + '</a></li>');
                 }
             });
         });
@@ -123,15 +127,15 @@
             $('#search-li').empty();
         });
 
-       $("#search-center").blur(function () {
-           //$('#search-result').blur(function(){
-                //console.log("hello");
-               $('#search-li').empty();
-           //});
+        $("#search-center").blur(function () {
+            //$('#search-result').blur(function(){
+            //console.log("hello");
+            $('#search-li').empty();
+            //});
         });
 
     });
-
+    */
 
     function show_date_time() {
         window.setTimeout("show_date_time()", 1e3);

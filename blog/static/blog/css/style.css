@@ -112,7 +112,8 @@ hr {
     /*border-top: solid 3px #1ba1e2;*/
     padding: 20px 30px 15px 30px;
     margin: 0 5px 50px 5px;
-    border-radius: 5px;
+    border-radius: 10px;
+    box-shadow: 10px 8px 5px rgba(0,0,0,.1);
 
 }
 
@@ -124,6 +125,7 @@ hr {
     margin: 5px 0;
     width: 90%;
     overflow: hidden;
+
     margin: auto;
 }
 
@@ -131,6 +133,7 @@ hr {
     /*margin: 0 10px;*/
     width: 100%;
     transition: all 1s;
+    border-radius: 10px;
 }
 
 .post-img:hover img {  
@@ -434,9 +437,10 @@ a:active {
 }
 
 .comment-root {
-    border: 0.1px solid #afafaf;
+    border: 1px solid #afafaf;
     padding: 8px;
-    margin: 10px; 
+    margin: 10px;
+    border-radius: 10px;
 }
 
 .comment-list span {

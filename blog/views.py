@@ -1,5 +1,4 @@
 from django.db.models import Sum
-from django.http import HttpResponse
 from django.shortcuts import render
 from django.views.generic import ListView, DetailView
 from django.contrib.contenttypes.models import ContentType
@@ -10,7 +9,6 @@ from comment.models import Comment
 from blog.templatetags.paginate_tags import getpages
 
 import markdown
-import json
 
 
 def index(request):
@@ -27,7 +25,7 @@ def index(request):
     else:
         ip = request.META['REMOTE_ADDR']
 
-    ips = [ip.ip for ip in IPLogs.objects.all()]
+    # ips = [ip.ip for ip in IPLogs.objects.all()]
 
     try:
         ipInstant = IPLogs.objects.get(ip=ip)
@@ -62,26 +60,27 @@ class ArticleDetailView(DetailView):
     def get_object(self, queryset=None):
         obj = super(ArticleDetailView, self).get_object()
 
-        # views 增加阅读量
-
-        obj.views += 1
-        obj.save()
-
         # markdown to html
-        extensions = ['markdown.extensions.extra',
-                      'markdown.extensions.fenced_code',
-                      'markdown.extensions.codehilite',
-                      'markdown.extensions.tables',
-                      'markdown.extensions.toc'
-                      ]
+        extensions = [
+            'markdown.extensions.extra',
+            'markdown.extensions.fenced_code',
+            'markdown.extensions.codehilite',
+            'markdown.extensions.tables',
+            'markdown.extensions.toc'
+        ]
 
         obj.body = markdown.markdown(obj.body, extensions=extensions, safe_mode=True, enable_attributes=False)
-        # print(obj.body)
         return obj
 
     # 为模板添加分类和标签上下文变量
     def get_context_data(self, **kwargs):
         article = self.get_object()
+
+        try:
+            article.views += 1
+            article.save()
+        except Article.DoesNotExist:
+            pass
 
         article_content_type = ContentType.objects.get_for_model(article)
 
@@ -151,14 +150,14 @@ class CategoryView(ListView):
 def search(request):
     text = request.GET["text"]
 
-    essays = Article.objects.filter(title__contains=text)
+    article_list = Article.objects.filter(
+        status="p", title__contains=text).order_by('-created_time')
 
-    titles = [essay.title for essay in essays]
-    ids = [essay.id for essay in essays]
-
-    data = {
-        "titles": titles,
-        "ids": ids
+    kwargs = {
+        'archive': True,
+        'current_page': 'archive',
+        'article_list': article_list
     }
 
-    return HttpResponse(json.dumps(data), content_type='application/json')
+    # print(kwargs)
+    return render(request, 'blog/archive.html', kwargs)
