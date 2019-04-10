@@ -75,7 +75,7 @@
   <div class="media mb-4 comment-root">
     <img class="d-flex mr-3 rounded-circle" src="{% static 'blog/imgs/1.jpg' %}" alt="" width="25" height="25" style="border: 0.1px solid #afafaf;">
     <div class="media-body text-justify" style="font-size: 14px;">
-      <span>{{ comment.user_name }}</span>&nbsp;&nbsp;<span"> {{ comment.created_time | date:'Y-m-d h:i' }} </span>&nbsp;&nbsp;<span>#</span>
+      <span>{{ comment.user_name }}</span>&nbsp;&nbsp;<span> {{ comment.created_time | date:'Y-m-d h:i' }} </span>&nbsp;&nbsp;<span>#</span>
       <a href="javascript:reply({{comment.pk}});">回复</a>
         <p class="comment-text">{{ comment.text  }}</p>
 

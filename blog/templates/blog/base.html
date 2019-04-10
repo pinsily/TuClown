@@ -96,8 +96,17 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
-      $.get("https://api.lwl12.com/hitokoto/main/get", function(data,status){
-        $(".hitokoto-one").text(data);
+      $.get("https://api.lwl12.com/hitokoto/v1?encode=realjson", function(data, status){
+          data = JSON.parse(data);
+          let author = data['author'];
+          let source = data['source'];
+          let rs = data['text'];
+
+          if(source!== '' || author!==''){
+              rs += " -- 《"+source+"》 "+author
+          }
+
+        $(".hitokoto-one").text(rs);
       });
     });
 
