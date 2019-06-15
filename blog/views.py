@@ -92,6 +92,35 @@ class ArticleDetailView(DetailView):
         return super(ArticleDetailView, self).get_context_data(**kwargs)
 
 
+def detail(request, article_id):
+    article = Article.objects.get(pk=article_id)
+
+    article.views += 1
+    article.save()
+
+    extensions = [
+        'markdown.extensions.extra',
+        'markdown.extensions.fenced_code',
+        'markdown.extensions.codehilite',
+        'markdown.extensions.tables',
+        'markdown.extensions.toc'
+    ]
+
+    article.body = markdown.markdown(article.body, extensions=extensions, safe_mode=False, enable_attributes=False)
+
+    article_content_type = ContentType.objects.get_for_model(article)
+
+    kwargs = {
+        'article': article,
+        'category_list': Category.objects.all().order_by('name'), 'tag_list': Tag.objects.all().order_by('name'),
+        'comment_list': Comment.objects.filter(
+                  content_type=article_content_type, object_id=article.pk, parent=None).order_by("-created_time"),
+        'detail': True
+    }
+
+    return render(request, 'blog/detail.html', kwargs)
+
+
 # 归档函数
 class ArchiveView(ListView):
     model = Article
