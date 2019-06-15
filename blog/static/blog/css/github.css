@@ -371,7 +371,7 @@
 }
 
 .content-github a:link, a:visited, a:hover, a:active {
-    color: #afafaf;
+    color: #777777;
     text-decoration: none;
 }
 
@@ -414,7 +414,7 @@
 
 /* Comment */
 .codehilite .err {
-    border: 1px solid #FF0000
+    /*border: 1px solid #FF0000;*/
 }
 
 /* Error */
@@ -1133,7 +1133,7 @@
 }
 
 .content-github a:link, a:visited, a:hover, a:active {
-    color: #afafaf;
+    color: #777777;
     text-decoration: none;
 }
 

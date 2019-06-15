@@ -16,3 +16,6 @@ cdnstatic/
 static/
 stickers/
 __pycache__/
+Tuclown_env/
+
+settings.py

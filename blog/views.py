@@ -28,9 +28,9 @@ def index(request):
     # ips = [ip.ip for ip in IPLogs.objects.all()]
 
     try:
-        ipInstant = IPLogs.objects.get(ip=ip)
-        ipInstant.visit_times += 1
-        ipInstant.save()
+        ip_instant = IPLogs.objects.get(ip=ip)
+        ip_instant.visit_times += 1
+        ip_instant.save()
     except IPLogs.DoesNotExist:
         IPLogs.objects.create(ip=ip)
 
@@ -69,7 +69,7 @@ class ArticleDetailView(DetailView):
             'markdown.extensions.toc'
         ]
 
-        obj.body = markdown.markdown(obj.body, extensions=extensions, safe_mode=True, enable_attributes=False)
+        obj.body = markdown.markdown(obj.body, extensions=extensions, safe_mode=False, enable_attributes=False)
         return obj
 
     # 为模板添加分类和标签上下文变量
