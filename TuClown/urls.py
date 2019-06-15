@@ -12,6 +12,9 @@ import xadmin
 import os
 import django
 
+from werobot.contrib.django import make_view
+from robot import robot
+
 xadmin.autodiscover()
 xversion.register_models()
 
@@ -31,7 +34,9 @@ urlpatterns = [
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
          name='django.contrib.sitemaps.views.sitemap'),
     path("rss/", AllArticalRssFeed(), name="rss"),
-    path('nav/', include('Navigation.urls', namespace='navigation'))
+    path('nav/', include('Navigation.urls', namespace='navigation')),
+    path('robot/', make_view(robot)),
+
 ]
 
 if settings.DEBUG:

@@ -13,3 +13,6 @@ migrations/
 .qiniu_pythonsdk_hostscache.json
 #TuClown/settings.py
 cdnstatic/
+static/
+stickers/
+__pycache__/
