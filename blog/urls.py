@@ -8,7 +8,7 @@ urlpatterns = [
     path('', views.index, name="index"),
     re_path(r'^article/(?P<article_id>\d+)$',
             views.detail, name='detail'),
-    path('archive', views.ArchiveView.as_view(), name="archive"),
+    path('archive', views.archive, name="archive"),
     path('category', views.CategoryView.as_view(), name="category"),
     path('tag', views.TagView.as_view(), name="tag"),
     path('search', views.search, name="search"),

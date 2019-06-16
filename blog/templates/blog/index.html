@@ -3,6 +3,10 @@
 {% load paginate_tags %}
 {% block title %}TuClown | Home{% endblock %}
 
+{% block ownstatic %}
+    <link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+{% endblock %}
+
 {% block body %}
             
     <!-- body -->
@@ -14,7 +18,13 @@
                 <div class="post-wrap">
                     <div class="post">
                         <div class="post-header">
-                            <a href="{% url 'blog:detail' article.id %}"><h3 class="text-center" style="color: black;">{{ article.title }}</h3></a>
+                            <a href="{% url 'blog:detail' article.id %}">
+                                <h3 class="text-center"
+                                    style="color: black; font-family:Arial,'Times New Roman','Noto Serif SC', serif; font-size: 27px;"
+                                >
+                                    {{ article.title }}
+                                </h3>
+                            </a>
                             <p class="text-center">
                             <span><i class="fa fa-clock-o"></i>&nbsp; {{ article.created_time }}</span>&nbsp; &nbsp;
                             <span><i class="fa fa-edit"></i>&nbsp; {{ article.author }}</span>&nbsp; &nbsp;

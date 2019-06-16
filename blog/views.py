@@ -45,53 +45,6 @@ def index(request):
 
 
 # 文章详情函数
-class ArticleDetailView(DetailView):
-    """显示文章详情
-    """
-
-    model = Article
-    template_name = 'blog/detail.html'
-    context_object_name = 'article'
-
-    # 接受来自 url 中的参数
-    pk_url_kwarg = 'article_id'
-
-    # 从数据库中获取相应ID文章、
-    def get_object(self, queryset=None):
-        obj = super(ArticleDetailView, self).get_object()
-
-        # markdown to html
-        extensions = [
-            'markdown.extensions.extra',
-            'markdown.extensions.fenced_code',
-            'markdown.extensions.codehilite',
-            'markdown.extensions.tables',
-            'markdown.extensions.toc'
-        ]
-
-        obj.body = markdown.markdown(obj.body, extensions=extensions, safe_mode=False, enable_attributes=False)
-        return obj
-
-    # 为模板添加分类和标签上下文变量
-    def get_context_data(self, **kwargs):
-        article = self.get_object()
-
-        try:
-            article.views += 1
-            article.save()
-        except Article.DoesNotExist:
-            pass
-
-        article_content_type = ContentType.objects.get_for_model(article)
-
-        kwargs['category_list'] = Category.objects.all().order_by('name')
-        kwargs['tag_list'] = Tag.objects.all().order_by('name')
-        kwargs['comment_list'] = Comment.objects.filter(
-            content_type=article_content_type, object_id=article.pk, parent=None).order_by("-created_time")
-        kwargs['detail'] = True
-        return super(ArticleDetailView, self).get_context_data(**kwargs)
-
-
 def detail(request, article_id):
     article = Article.objects.get(pk=article_id)
 
@@ -112,10 +65,15 @@ def detail(request, article_id):
 
     kwargs = {
         'article': article,
-        'category_list': Category.objects.all().order_by('name'), 'tag_list': Tag.objects.all().order_by('name'),
+        # 'category_list': Category.objects.all().order_by('name'),
+        # 'tag_list': Tag.objects.all().order_by('name'),
         'comment_list': Comment.objects.filter(
-                  content_type=article_content_type, object_id=article.pk, parent=None).order_by("-created_time"),
-        'detail': True
+            content_type=article_content_type, object_id=article.pk, parent=None).order_by("-created_time"),
+        # 'detail': True,
+        'views': IPLogs.objects.aggregate(views=Sum("visit_times"))["views"],
+        'blogs': Article.objects.count(),
+        'visiters': IPLogs.objects.count(),
+        'favs': Article.objects.aggregate(favs=Sum("likes"))["favs"]
     }
 
     return render(request, 'blog/detail.html', kwargs)
@@ -128,7 +86,7 @@ class ArchiveView(ListView):
     template_name = 'blog/archive.html'
 
     def get_queryset(self):
-        """过滤数据，并转换markdown为html
+        """
         """
         article_list = Article.objects.filter(
             status="p").order_by('-created_time')
@@ -136,12 +94,28 @@ class ArchiveView(ListView):
 
     # 为模板添加分类和标签上下文变量
     def get_context_data(self, **kwargs):
-        kwargs['stick_articles'] = Article.objects.filter(topped=True)
+        # kwargs['stick_articles'] = Article.objects.filter(topped=True)
         kwargs['current_page'] = 'archive'
-        kwargs['category_list'] = Category.objects.all().order_by('name')
+        # kwargs['category_list'] = Category.objects.all().order_by('name')
         kwargs['tag_list'] = Tag.objects.all().order_by('name')
         kwargs['archive'] = True
         return super(ArchiveView, self).get_context_data(**kwargs)
+
+
+def archive(request):
+    article_list = Article.objects.filter(status='p').order_by('-created_time')
+    kwargs = dict()
+    kwargs['article_list'] = article_list
+    # kwargs['current_page'] = 'archive'
+    # kwargs['category_list'] = Category.objects.all().order_by('name')
+    # kwargs['tag_list'] = Tag.objects.all().order_by('name')
+    # kwargs['archive'] = True
+    kwargs['views'] = IPLogs.objects.aggregate(views=Sum("visit_times"))["views"]
+    kwargs['blogs'] = Article.objects.count()
+    kwargs['visiters'] = IPLogs.objects.count()
+    kwargs['favs'] = Article.objects.aggregate(favs=Sum("likes"))["favs"]
+
+    return render(request, 'blog/archive.html', kwargs)
 
 
 # 标签函数
@@ -185,7 +159,11 @@ def search(request):
     kwargs = {
         'archive': True,
         'current_page': 'archive',
-        'article_list': article_list
+        'article_list': article_list,
+        'views': IPLogs.objects.aggregate(views=Sum("visit_times"))["views"],
+        'blogs': Article.objects.count(),
+        'visiters': IPLogs.objects.count(),
+        'favs': Article.objects.aggregate(favs=Sum("likes"))["favs"]
     }
 
     # print(kwargs)
