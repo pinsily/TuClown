@@ -56,3 +56,9 @@
 1. 完善xadmin后台管理系统
 2. 更换一言接口: https://www.jzfblog.com/detail/98
 3. 搜索功能，借用归档界面
+
+---
+### 2019.06.16
+1. 页面小修改
+2. 修复文章 html_removed bug
+3. 删除没用的代码

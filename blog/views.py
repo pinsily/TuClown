@@ -1,13 +1,9 @@
 from django.db.models import Sum
 from django.shortcuts import render
-from django.views.generic import ListView, DetailView
 from django.contrib.contenttypes.models import ContentType
-
-from .models import Article, Category, Tag, IPLogs
+from .models import Article, IPLogs
 from comment.models import Comment
-
 from blog.templatetags.paginate_tags import getpages
-
 import markdown
 
 
@@ -41,6 +37,7 @@ def index(request):
     kwargs['views'] = IPLogs.objects.aggregate(views=Sum("visit_times"))["views"]
     kwargs['blogs'] = Article.objects.count()
     kwargs['visiters'] = IPLogs.objects.count()
+
     return render(request, 'blog/index.html', kwargs)
 
 
@@ -80,28 +77,6 @@ def detail(request, article_id):
 
 
 # 归档函数
-class ArchiveView(ListView):
-    model = Article
-    context_object_name = 'article_list'
-    template_name = 'blog/archive.html'
-
-    def get_queryset(self):
-        """
-        """
-        article_list = Article.objects.filter(
-            status="p").order_by('-created_time')
-        return article_list
-
-    # 为模板添加分类和标签上下文变量
-    def get_context_data(self, **kwargs):
-        # kwargs['stick_articles'] = Article.objects.filter(topped=True)
-        kwargs['current_page'] = 'archive'
-        # kwargs['category_list'] = Category.objects.all().order_by('name')
-        kwargs['tag_list'] = Tag.objects.all().order_by('name')
-        kwargs['archive'] = True
-        return super(ArchiveView, self).get_context_data(**kwargs)
-
-
 def archive(request):
     article_list = Article.objects.filter(status='p').order_by('-created_time')
     kwargs = dict()
@@ -118,38 +93,7 @@ def archive(request):
     return render(request, 'blog/archive.html', kwargs)
 
 
-# 标签函数
-class TagView(ListView):
-    model = Tag
-    context_object_name = 'tag_list'
-    template_name = 'blog/tag.html'
-
-    # 为模板添加分类和标签上下文变量
-    def get_context_data(self, **kwargs):
-        kwargs['stick_articles'] = Article.objects.filter(topped=True)
-        kwargs['current_page'] = 'tag'
-        kwargs['category_list'] = Category.objects.all().order_by('name')
-        kwargs['tag_list'] = Tag.objects.all().order_by('name')
-        kwargs['tags'] = True
-        return super(TagView, self).get_context_data(**kwargs)
-
-
 # 分类函数
-class CategoryView(ListView):
-    model = Category
-    context_object_name = 'category_list'
-    template_name = 'blog/category.html'
-
-    # 为模板添加分类和标签上下文变量
-    def get_context_data(self, **kwargs):
-        kwargs['stick_articles'] = Article.objects.filter(topped=True)
-        kwargs['current_page'] = 'category'
-        kwargs['category_list'] = Category.objects.all().order_by('name')
-        kwargs['tag_list'] = Tag.objects.all().order_by('name')
-        kwargs['category'] = True
-        return super(CategoryView, self).get_context_data(**kwargs)
-
-
 def search(request):
     text = request.GET["text"]
 
@@ -166,5 +110,4 @@ def search(request):
         'favs': Article.objects.aggregate(favs=Sum("likes"))["favs"]
     }
 
-    # print(kwargs)
     return render(request, 'blog/archive.html', kwargs)

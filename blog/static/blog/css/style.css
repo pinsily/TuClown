@@ -510,9 +510,9 @@ a:active {
     right: 0;
     /*width: 80px;*/
     /*height: 45px;*/
-    margin: 50px;
+    margin: 0 50px 50px 0;
     padding: 5px 25px;
-    border: 1px solid #bcbcbc;
+    /*border: 1px solid #bcbcbc;*/
     
 }
 

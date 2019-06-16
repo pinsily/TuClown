@@ -8,19 +8,7 @@
             {% else %}
                 <li class="page-item"><a class="page-link disabled" aria-label="Previous" style="color: #FFFFFF;">&laquo;</a></li>
             {% endif %}
-        <!--
-        <li>
-            <a href="?page=
-                {% if article_list.has_previous %}
-                    {{article_list.previous_page_number}}
-                {% else %}
-                    {{article_list.number}}
-                {% endif %}
-            " aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        -->
+
         {% for page in pages.page_range_ex %}
             {% if page == '...' %}
                 <li><span>...</span></li>
