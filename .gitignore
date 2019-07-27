@@ -19,3 +19,5 @@ __pycache__/
 Tuclown_env/
 
 settings.py
+
+sql/

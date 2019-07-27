@@ -22,7 +22,9 @@ class BookmarkAdmin(object):
 
 class CategoryAdmin(object):
     list_display = ['created_time', 'name', 'english_name']
-    inlines = [BookmarkAdmin]
+    # inlines = [BookmarkAdmin]  # 这个嵌套会报错  'NoneType' object has no attribute '_meta'
+    # 改用 model
+    model = models.Bookmark
     ordering = ['-created_time']
 
 
