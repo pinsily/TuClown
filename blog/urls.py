@@ -9,4 +9,5 @@ urlpatterns = [
             views.detail, name='detail'),
     path('archive', views.archive, name="archive"),
     path('search', views.search, name="search"),
+    path('color', views.color, name='color')
 ]
