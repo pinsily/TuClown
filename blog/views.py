@@ -1,3 +1,5 @@
+import json
+
 from django.db.models import Sum
 from django.shortcuts import render
 from django.contrib.contenttypes.models import ContentType
@@ -111,3 +113,9 @@ def search(request):
     }
 
     return render(request, 'blog/archive.html', kwargs)
+
+
+def color(request):
+    with open("blog/color.json", 'r') as f:
+        data = json.loads(f.read())
+    return render(request, 'blog/chinese_colors.html', {'data': data})
