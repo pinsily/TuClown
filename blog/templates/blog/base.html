@@ -7,12 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <title>{% block title %}TuClown | TuClown{% endblock %}</title>
-    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/css/Pacifico.css' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/hover.css' %}">
     <link rel="stylesheet" href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/style.css' %}">
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{% static 'blog/js/jquery.min.js' %}"></script>
 
     {% block ownstatic %}
 
@@ -74,8 +74,8 @@
     {% endblock %}
 
 
-    <div class="back-top" style="background: none;">
-        <img src="{% static 'blog/imgs/rocket.png' %}" alt="back to top" style="width:30%;">
+    <div class="back-top" style="background: none; text-align: center;">
+        <img src="{% static 'blog/imgs/rocket.png' %}" alt="back to top" style="width:30px;">
     </div>
 
 
@@ -89,11 +89,15 @@
 
 
 <!-- popper.min.js 用于弹窗、提示、下拉菜单 -->
-<script src="https://cdn.bootcss.com/popper.js/1.12.5/umd/popper.min.js"></script>
+<script src="{% static 'blog/js/popper.min.js' %}"></script>
 
 <!-- 最新的 Bootstrap4 核心 JavaScript 文件 -->
-<script src="https://cdn.bootcss.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+<script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
 <script src="{% static 'blog/js/main.js' %}"></script>
+
+ {% block ownjs %}
+
+    {% endblock %}
 
 <script type="text/javascript">
 

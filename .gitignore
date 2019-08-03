@@ -8,16 +8,15 @@ dist
 build
 
 migrations/
-./static/
+
 *.log
 .qiniu_pythonsdk_hostscache.json
-#TuClown/settings.py
 cdnstatic/
-static/
+./static/
 stickers/
 __pycache__/
 Tuclown_env/
 
 settings.py
 
-sql/
+*.sql

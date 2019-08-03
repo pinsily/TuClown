@@ -7,7 +7,7 @@ register = template.Library()
 def getpages(request, objectlist):
     """get the paginator"""
     current_page = request.GET.get('page', 1)
-    paginator = Paginator(objectlist, 6)
+    paginator = Paginator(objectlist, 18)
     objectlist = paginator.page(current_page)
 
     page_range = []

@@ -5,48 +5,52 @@
 
 {% block ownstatic %}
     <link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet">
+
 {% endblock %}
 
 {% block body %}
-            
+
     <!-- body -->
     <div class="container-fluid">
         <div class="row" id="row">
             <div class="col-sm-12 col-md-8 posts">
 
-                {% for article in article_list  %}
-                <div class="post-wrap">
-                    <div class="post">
-                        <div class="post-header">
-                            <a href="{% url 'blog:detail' article.id %}">
-                                <h3 class="text-center"
-                                    style="color: black; font-family:Arial,'Times New Roman','Noto Serif SC', serif; font-size: 27px;"
-                                >
-                                    {{ article.title }}
-                                </h3>
-                            </a>
-                            <p class="text-center">
-                            <span><i class="fa fa-clock-o"></i>&nbsp; {{ article.created_time }}</span>&nbsp; &nbsp;
-                            <span><i class="fa fa-edit"></i>&nbsp; {{ article.author }}</span>&nbsp; &nbsp;
-                            <span><i class="fa fa-eye"></i>&nbsp; {{ article.views }}</span>&nbsp; &nbsp;
-                            <span><a><i class="fa fa-heart"></i>&nbsp; {{ article.likes }}</a></span>
-                            </p>
-                        </div>
-                        <div class="post-img text-center">
-                            <a href="{% url 'blog:detail' article.id %}"><img src="{{ article.image.url }}"></a>
-                        </div>
-
-                        <div class="post-content">
-                            <div class="quote-words">
-                                <div class="quote-icon"></div>
-                                <a class="quote-text" href="{% url 'blog:detail' article.id %}" target="_blank">{{ article.abstract }}</a> 
-                                <div class="rotate-quote-mark"></div>
+                {% for article in article_list %}
+                    <div class="post-wrap">
+                        <div class="post">
+                            <div class="post-header">
+                                <a href="{% url 'blog:detail' article.id %}">
+                                    <h3 class="text-center"
+                                        style="color: black; font-family:Arial,'Times New Roman','Noto Serif SC', serif; font-size: 27px;"
+                                    >
+                                        {{ article.title }}
+                                    </h3>
+                                </a>
+                                <p class="text-center">
+                                    <span><i class="fa fa-clock-o"></i>&nbsp; {{ article.created_time }}</span>&nbsp;
+                                    &nbsp;
+                                    <span><i class="fa fa-edit"></i>&nbsp; {{ article.author }}</span>&nbsp; &nbsp;
+                                    <span><i class="fa fa-eye"></i>&nbsp; {{ article.views }}</span>&nbsp; &nbsp;
+                                    <span><a><i class="fa fa-heart"></i>&nbsp; {{ article.likes }}</a></span>
+                                </p>
                             </div>
+                            <div class="post-img text-center">
+                                <a href="{% url 'blog:detail' article.id %}"><img
+                                        class="lozad" data-src="{{ article.image.url }}"></a>
+                            </div>
+
+                            <div class="post-content">
+                                <div class="quote-words">
+                                    <div class="quote-icon"></div>
+                                    <a class="quote-text" href="{% url 'blog:detail' article.id %}"
+                                       target="_blank">{{ article.abstract }}</a>
+                                    <div class="rotate-quote-mark"></div>
+                                </div>
+                            </div>
+
                         </div>
 
                     </div>
-                    
-                </div>
 
                 {% endfor %}
                 {% include "blog/pagination.html" %}
@@ -54,5 +58,13 @@
             {% include "blog/sidebar.html" %}
         </div>
     </div>
+
+    {% block ownjs %}
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/lozad/dist/lozad.min.js"></script>
+        <script type="text/javascript">
+            const observer = lozad(); // lazy loads elements with default selector as '.lozad'
+            observer.observe();
+        </script>
+    {% endblock %}
 
 {% endblock %}
