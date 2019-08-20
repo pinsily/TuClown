@@ -16,21 +16,24 @@ robot = WeRoBot(
 
 client = robot.client
 
+
 @robot.text
 def hello(message):
     content = message.content
-    if content=='1':
+    if content == '1':
         send_image = client.upload_media(media_type='image', media_file=open(get_image(), 'rb'))
         return ImageReply(message=message, media_id=send_image['media_id'])
-    elif content=='2':
+    elif content == '2':
         return TextReply(message=message, content=get_sentence())
-    elif content=="3":
+    elif content == "3":
         return TextReply(message=message, content=get_duanzi())
     else:
         return TextReply(message=message, content='继续翻')
 
+
 def get_image():
     return random.choice(glob.glob("stickers/*"))
+
 
 @robot.filter(re.compile(".*?bb.*?"))
 def b():
@@ -54,8 +57,9 @@ def get_sentence():
 def subscribe(message):
     return "a clown with tulip\n【1】表情包\n【2】句子迷\n【3】段子"
 
+
 def get_duanzi():
-    connection = pymysql.connect(host='localhost',user='root',password='pinsily',db='duanzi')
+    connection = pymysql.connect(host='localhost', user='root', password='pinsily', db='duanzi')
     with connection.cursor() as cursor:
         sql = "select content from duanzi order by rand() limit 1"
         cursor.execute(sql)
@@ -63,4 +67,3 @@ def get_duanzi():
         return result[0]
 
     connection.close()
-
