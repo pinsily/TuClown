@@ -18,19 +18,19 @@ def index(request):
     article_list = Article.objects.filter(status="p").order_by('-created_time')
     pages, article_list = getpages(request, article_list)
 
-    if 'HTTP_X_FORWARDED_FOR' in request.META:
-        ip = request.META['HTTP_X_FORWARDED_FOR']
-    else:
-        ip = request.META['REMOTE_ADDR']
-
-    # ips = [ip.ip for ip in IPLogs.objects.all()]
-
-    try:
-        ip_instant = IPLogs.objects.get(ip=ip)
-        ip_instant.visit_times += 1
-        ip_instant.save()
-    except IPLogs.DoesNotExist:
-        IPLogs.objects.create(ip=ip)
+    # if 'HTTP_X_FORWARDED_FOR' in request.META:
+    #     ip = request.META['HTTP_X_FORWARDED_FOR']
+    # else:
+    #     ip = request.META['REMOTE_ADDR']
+    #
+    # # ips = [ip.ip for ip in IPLogs.objects.all()]
+    #
+    # try:
+    #     ip_instant = IPLogs.objects.get(ip=ip)
+    #     ip_instant.visit_times += 1
+    #     ip_instant.save()
+    # except IPLogs.DoesNotExist:
+    #     IPLogs.objects.create(ip=ip)
 
     kwargs = dict()
     kwargs['pages'] = pages
