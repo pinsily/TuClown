@@ -3,6 +3,14 @@
 {% block title %}TuClown | {{ article.title }}{% endblock %}
 {% block ownstatic %}
     <link rel="stylesheet" type="text/css" href="{% static 'blog/css/github.css' %}">
+    <style type="text/css">
+        .content-github pre {
+            overflow: auto;
+            max-height: 637px;
+            border-radius: 8px;
+        }
+    </style>
+
 {% endblock %}
 
 {% block body %}
