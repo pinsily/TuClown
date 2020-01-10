@@ -116,6 +116,6 @@ def search(request):
 
 
 def color(request):
-    with open("blog/color.json", 'r') as f:
+    with open("apps/blog/color.json", 'r') as f:
         data = json.loads(f.read())
     return render(request, 'blog/chinese_colors.html', {'data': data})
